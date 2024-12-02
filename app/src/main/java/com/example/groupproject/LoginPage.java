@@ -1,4 +1,4 @@
-package com.example.ourproject;
+package com.example.groupproject;
 
 import android.content.Context;
 import android.content.Intent;
