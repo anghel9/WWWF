@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ourproject"
+    namespace = "com.example.groupproject"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ourproject"
-        minSdk = 34
+        applicationId = "com.example.groupproject"
+        minSdk = 26 // Update this to at least 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -29,15 +29,20 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.room.common)
+    implementation(libs.room.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    annotationProcessor(libs.room.compiler)
 }

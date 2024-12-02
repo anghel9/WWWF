@@ -10,8 +10,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OurProject"
+        android:theme="@style/Theme.GroupProject"
         tools:targetApi="31">
+        <activity
+            android:name=".BattleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WorldActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HubActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
