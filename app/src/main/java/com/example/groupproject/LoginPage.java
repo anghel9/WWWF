@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.ourproject.databinding.ActivityLoginPageBinding;
+import com.example.groupproject.databinding.ActivityLoginPageBinding;
 
 public class LoginPage extends AppCompatActivity {
 
