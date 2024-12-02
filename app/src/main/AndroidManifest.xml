@@ -16,6 +16,18 @@
             android:name=".LoginPage"
             android:exported="false" />
         <activity
+            android:name=".BattleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WorldActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HubActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
