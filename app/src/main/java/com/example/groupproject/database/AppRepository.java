@@ -27,7 +27,7 @@ public class AppRepository {
         executorService = Executors.newFixedThreadPool(4);
     }
 
-    // Singleton pattern for repository
+    // Singleton pattern
     public static AppRepository getRepository(Application application) {
         if (repository == null) {
             synchronized (AppRepository.class) {
@@ -39,7 +39,7 @@ public class AppRepository {
         return repository;
     }
 
-    // ======== UserDAO Methods ========
+    // UserDAO Methods
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUsername(username);
     }
@@ -64,7 +64,7 @@ public class AppRepository {
         executorService.execute(userDAO::deleteAll);
     }
 
-    // ======== GameProgressDAO Methods ========
+    // GameProgressDAO Methods
     public LiveData<GameProgress> getGameProgressForUser(int userId) {
         return userDAO.getGameProgressForUser(userId);
     }
@@ -77,7 +77,7 @@ public class AppRepository {
         executorService.execute(() -> userDAO.deleteGameProgress(gameProgress));
     }
 
-    // ======== InventoryDAO Methods ========
+    // InventoryDAO Methods
     public LiveData<List<Inventory>> getInventoryForUser(int userId) {
         return userDAO.getInventoryForUser(userId);
     }
@@ -90,7 +90,7 @@ public class AppRepository {
         executorService.execute(() -> userDAO.deleteInventoryItem(inventory));
     }
 
-    // ======== AnimalDAO Methods ========
+    // AnimalDAO Methods
     public LiveData<List<Animal>> getAllAnimals() {
         return animalDAO.getAllAnimals();
     }
