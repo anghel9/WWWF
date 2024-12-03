@@ -7,4 +7,71 @@
     android:layout_height="match_parent"
     tools:context=".BattleActivity">
 
+
+    <RatingBar
+        android:id="@+id/opponentRemainingCreatures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RatingBar
+        android:id="@+id/playerRemainingCreatures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/opponentHealthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        />
+    <ProgressBar
+        android:id="@+id/playerHealthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        />
+
+    <Button
+        android:id="@+id/attackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/swapCreatureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <TextureView
+        android:id="@+id/opponentCreatureView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextureView
+        android:id="@+id/playerCreatureView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/opponentCreatureName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/playerCreatureName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/opponentCreatureHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/playerCreatureHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
