@@ -12,13 +12,10 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "username")
     private String username;
 
-    @ColumnInfo(name = "password")
     private String password;
 
-    @ColumnInfo(name = "isAdmin")
     private boolean isAdmin;
 
     private int highestArena = 0;
