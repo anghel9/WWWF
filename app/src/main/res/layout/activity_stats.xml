@@ -7,4 +7,82 @@
     android:layout_height="match_parent"
     tools:context=".StatsActivity">
 
+    <Button
+        android:id="@+id/statsExitButton"
+        android:layout_width="99dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/exit"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/swapButton1"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsExitButton"
+        android:text="@string/swap"
+        android:textSize="15sp"
+        android:gravity="center|center_vertical"
+        />
+
+    <Button
+        android:id="@+id/swapButton2"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/swapButton1"
+        android:text="@string/swap"
+        android:textSize="15sp"
+        android:gravity="center|center_vertical"/>
+
+    <Button
+        android:id="@+id/swapButton3"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/swapButton2"
+        app:layout_constraintVertical_bias="0.0"
+        android:text="@string/swap"
+        android:textSize="15sp"
+        android:gravity="center|center_vertical"/>
+
+    <TextureView
+        android:id="@+id/animal1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="168dp"
+        app:layout_constraintStart_toEndOf="@+id/swapButton1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextureView
+        android:id="@+id/animal2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toEndOf="@+id/swapButton2"
+        app:layout_constraintTop_toBottomOf="@+id/animal1" />
+
+    <TextureView
+        android:id="@+id/animal3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toEndOf="@+id/swapButton3"
+        app:layout_constraintTop_toBottomOf="@+id/animal2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         int userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
 
-        Log.d("MainActivity", "Logged-in user ID: " + userId);
+
 
 
     }
