@@ -5,4 +5,7 @@
     <string name="wwwf_n_world_wildlife_wrestling_foundation">WWWF \n World Wildlife Wrestling Foundation</string>
     <string name="edit_party">Edit Party</string>
     <string name="WebviewURL">http://www.google.com</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="attack">Attack</string>
+    <string name="switch_creature">Switch Creature</string>
 </resources>
