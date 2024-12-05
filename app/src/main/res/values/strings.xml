@@ -7,4 +7,8 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="login">login</string>
+    <string name="logintext">Login!</string>
+    <string name="passwordtext">Password</string>
+    <string name="usernametext">Username</string>
+    <string name="world_wildlife_wrestling_federationtext">World Wildlife Wrestling Federation</string>
 </resources>
