@@ -107,11 +107,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/swapCreatureButton" />
 
-    <TextureView
-        android:id="@+id/textureView"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
