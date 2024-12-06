@@ -1,16 +1,17 @@
 package com.example.groupproject;
 
-public abstract class Animal {
-    String animalType = "";
+public class Animal {
+    private String animalName = "";
     private int hp = 100;
     private  int attackPwr = 25;
     private double accuracy = 0.35;
     private double atkSpeed = 1.0;
 
+
     Animal(){}
 
-    Animal(String animalType, double accuracy, double atkSpeed){
-        this.animalType = animalType;
+    Animal(String animalName, double accuracy, double atkSpeed){
+        this.animalName = animalName;
         this.accuracy = accuracy;
         this.atkSpeed = atkSpeed;
     }
@@ -19,12 +20,12 @@ public abstract class Animal {
         return false;
     }
 
-    public String getAnimalType() {
-        return animalType;
+    public String getAnimalName() {
+        return animalName;
     }
 
-    public void setAnimalType(String animalType) {
-        this.animalType = animalType;
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
     }
 
     public int getHp() {
