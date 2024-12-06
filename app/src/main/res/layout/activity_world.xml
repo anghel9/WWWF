@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Bossbutton"
+        android:id="@+id/BossButton"
         android:layout_width="96dp"
         android:layout_height="64dp"
         android:text="@string/dr_c_boss"
