@@ -42,17 +42,17 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-                    // Assuming this factory method is correct
+
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid password");
-                    binding.passwordLoginEditText.setText("");  // Clear the password field
-                    binding.passwordLoginEditText.setSelection(0); // Move cursor to start
+                    binding.passwordLoginEditText.setText("");
+                    binding.passwordLoginEditText.setSelection(0);
                 }
             } else {
                 toastMaker(String.format("User %s is not valid", username));
-                binding.userNameLoginEditText.setText("");  // Clear username field
-                binding.userNameLoginEditText.setSelection(0); // Move cursor to start
+                binding.userNameLoginEditText.setText("");
+                binding.userNameLoginEditText.setSelection(0);
             }
         });
     }
