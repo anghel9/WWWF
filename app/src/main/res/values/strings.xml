@@ -13,4 +13,6 @@
     <string name="exit">Exit</string>
     <string name="switch_creature">Switch Creature</string>
     <string name="attack">Attack</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="edit_party">Change Creature</string>
 </resources>
