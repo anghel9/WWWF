@@ -11,4 +11,6 @@
     <string name="forest_battle">Forest Battle</string>
     <string name="atlanta_battle">Atlanta Battle</string>
     <string name="exit">Exit</string>
+    <string name="switch_creature">Switch Creature</string>
+    <string name="attack">Attack</string>
 </resources>
