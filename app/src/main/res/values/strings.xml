@@ -9,4 +9,5 @@
     <string name="login">login</string>
     <string name="exit">EXIT</string>
     <string name="swap">SWAP</string>
+    <string name="stats">STATS</string>
 </resources>
