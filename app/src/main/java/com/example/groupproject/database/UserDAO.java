@@ -6,18 +6,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 
-import com.example.groupproject.database.entities.GameProgress;
-import com.example.groupproject.database.entities.Inventory;
 import com.example.groupproject.database.entities.User;
 
 import java.util.List;
 
 @Dao
 public interface UserDAO {
-
-    // User CRUD operations
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... users);
 
@@ -26,9 +21,6 @@ public interface UserDAO {
 
     @Delete
     void delete(User user);
-
-    @Delete
-    void deleteUsers(List<User> users);
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
@@ -50,26 +42,4 @@ public interface UserDAO {
 
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();
-
-    // GameProgress CRUD operations
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertGameProgress(GameProgress gameProgress);
-
-    @Transaction
-    @Query("SELECT * FROM gameProgressTable WHERE userId = :userId")
-    LiveData<GameProgress> getGameProgressForUser(int userId);
-
-    @Delete
-    void deleteGameProgress(GameProgress gameProgress);
-
-    // Inventory CRUD operations
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertInventoryItem(Inventory inventory);
-
-    @Transaction
-    @Query("SELECT * FROM inventoryTable WHERE userId = :userId")
-    LiveData<List<Inventory>> getInventoryForUser(int userId);
-
-    @Delete
-    void deleteInventoryItem(Inventory inventory);
 }

@@ -7,4 +7,48 @@
     android:layout_height="match_parent"
     tools:context=".WorldActivity">
 
+    <Button
+        android:id="@+id/ExitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/ForestBattleButton"
+        android:layout_width="109dp"
+        android:layout_height="70dp"
+        android:text="@string/forest_battle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ExitButton"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BeachBattleButton"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <Button
+        android:id="@+id/BeachBattleButton"
+        android:layout_width="108dp"
+        android:layout_height="67dp"
+        android:text="@string/beach_battle"
+        app:layout_constraintBottom_toTopOf="@+id/ExitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toEndOf="@+id/ForestBattleButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.665" />
+
+    <Button
+        android:id="@+id/AtlantaBattleButton"
+        android:layout_width="112dp"
+        android:layout_height="69dp"
+        android:text="@string/atlanta_battle"
+        app:layout_constraintBottom_toTopOf="@+id/ForestBattleButton"
+        app:layout_constraintEnd_toStartOf="@+id/BeachBattleButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

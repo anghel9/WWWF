@@ -55,28 +55,15 @@ public abstract class AppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Log.i(AppDatabase.class.getSimpleName(), "Database created");
-            databaseWriteExecutor.execute(() -> {
-                // Populate default data
-                UserDAO userDao = INSTANCE.userDAO();
-                userDao.deleteAll(); // Clear any existing data
-                addDefaultUsers(userDao);
-            });
-        }
-
-        private void addDefaultUsers(UserDAO userDao) {
-            User admin = new User("admin1", "admin1");
-            admin.setAdmin(true);
-            userDao.insert(admin);
-
-            User testUser = new User("testUser1", "testUser1");
-            userDao.insert(testUser);
-
-            Log.i(AppDatabase.class.getSimpleName(), "Default users added");
         }
     };
 
     // DAOs
     public abstract UserDAO userDAO();
-    public abstract AnimalDAO animalDAO();
 
+    public abstract InventoryDAO inventoryDAO();
+
+    public abstract GameProgressDAO gameProgressDAO();
+
+    public abstract AnimalDAO animalDAO();
 }

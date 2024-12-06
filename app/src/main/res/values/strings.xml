@@ -7,4 +7,8 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="login">login</string>
+    <string name="beach_battle">Beach Battle</string>
+    <string name="forest_battle">Forest Battle</string>
+    <string name="atlanta_battle">Atlanta Battle</string>
+    <string name="exit">Exit</string>
 </resources>

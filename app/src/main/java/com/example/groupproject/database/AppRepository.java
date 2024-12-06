@@ -18,12 +18,16 @@ public class AppRepository {
     private static volatile AppRepository repository;
     private final UserDAO userDAO;
     private final AnimalDAO animalDAO;
+    private final GameProgressDAO gameProgressDAO; // Add reference to GameProgressDAO
+    private final InventoryDAO inventoryDAO;       // Add reference to InventoryDAO
     private final ExecutorService executorService;
 
     private AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         userDAO = db.userDAO();
         animalDAO = db.animalDAO();
+        gameProgressDAO = db.gameProgressDAO(); // Initialize GameProgressDAO
+        inventoryDAO = db.inventoryDAO();       // Initialize InventoryDAO
         executorService = Executors.newFixedThreadPool(4);
     }
 
@@ -66,28 +70,28 @@ public class AppRepository {
 
     // GameProgressDAO Methods
     public LiveData<GameProgress> getGameProgressForUser(int userId) {
-        return userDAO.getGameProgressForUser(userId);
+        return gameProgressDAO.getGameProgressForUser(userId); // Use GameProgressDAO
     }
 
     public void insertGameProgress(GameProgress gameProgress) {
-        executorService.execute(() -> userDAO.insertGameProgress(gameProgress));
+        executorService.execute(() -> gameProgressDAO.insertGameProgress(gameProgress)); // Use GameProgressDAO
     }
 
     public void deleteGameProgress(GameProgress gameProgress) {
-        executorService.execute(() -> userDAO.deleteGameProgress(gameProgress));
+        executorService.execute(() -> gameProgressDAO.deleteGameProgress(gameProgress)); // Use GameProgressDAO
     }
 
     // InventoryDAO Methods
     public LiveData<List<Inventory>> getInventoryForUser(int userId) {
-        return userDAO.getInventoryForUser(userId);
+        return inventoryDAO.getInventoryForUser(userId); // Use InventoryDAO
     }
 
     public void insertInventoryItem(Inventory inventory) {
-        executorService.execute(() -> userDAO.insertInventoryItem(inventory));
+        executorService.execute(() -> inventoryDAO.insertInventoryItem(inventory)); // Use InventoryDAO
     }
 
     public void deleteInventoryItem(Inventory inventory) {
-        executorService.execute(() -> userDAO.deleteInventoryItem(inventory));
+        executorService.execute(() -> inventoryDAO.deleteInventoryItem(inventory)); // Use InventoryDAO
     }
 
     // AnimalDAO Methods
@@ -123,5 +127,3 @@ public class AppRepository {
         executorService.execute(animalDAO::deleteAll);
     }
 }
-
-
