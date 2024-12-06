@@ -18,78 +18,30 @@
         android:textSize="24sp"
         android:gravity="center"/>
 
-    <Button
-        android:id="@+id/swapButton1"
-        android:layout_width="50dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/statsExitButton"
-        android:text="@string/swap"
-        android:textSize="15sp"
-        android:gravity="center|center_vertical"
-        />
 
     <Button
-        android:id="@+id/swapButton2"
+        android:id="@+id/swapButton"
         android:layout_width="50dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="220dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/swapButton1"
-        android:text="@string/swap"
-        android:textSize="15sp"
-        android:gravity="center|center_vertical"/>
-
-    <Button
-        android:id="@+id/swapButton3"
-        android:layout_width="50dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center|center_vertical"
-        android:text="@string/swap"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/swapButton2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/statsExitButton" />
 
     <TextureView
-        android:id="@+id/animal1"
+        android:id="@+id/animalImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="168dp"
-        app:layout_constraintStart_toEndOf="@+id/swapButton1"
+        android:layout_marginTop="292dp"
+        app:layout_constraintStart_toEndOf="@+id/swapButton"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextureView
-        android:id="@+id/animal2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="76dp"
-        app:layout_constraintStart_toEndOf="@+id/swapButton2"
-        app:layout_constraintTop_toBottomOf="@+id/animal1" />
-
-    <TextureView
-        android:id="@+id/animal3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="76dp"
-        app:layout_constraintStart_toEndOf="@+id/swapButton3"
-        app:layout_constraintTop_toBottomOf="@+id/animal2" />
 
     <TextView
         android:id="@+id/statsTextView1"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="240dp"
         android:gravity="center"
         android:text="@string/stats"
         android:textSize="30sp"
@@ -97,33 +49,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/statsImageView1"
+        android:id="@+id/animalStats"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/animal1"
+        app:layout_constraintStart_toEndOf="@id/animalImage"
         app:layout_constraintTop_toBottomOf="@id/statsTextView1" />
 
-    <ImageView
-        android:id="@+id/statsImageView2"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/animalName"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="60dp"
+        android:gravity="center"
+        android:text="@string/name"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/animalImage"
+        app:layout_constraintEnd_toStartOf="@id/statsTextView1"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/animal2"
-        app:layout_constraintTop_toBottomOf="@id/statsImageView1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991" />
 
-    <ImageView
-        android:id="@+id/statsImageView3"
+    <TextView
         android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="76dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="120dp"
+        android:gravity="center"
+        android:text="@string/push_button_to_swap"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/animal3"
-        app:layout_constraintTop_toBottomOf="@id/statsImageView2" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

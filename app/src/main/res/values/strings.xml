@@ -10,4 +10,6 @@
     <string name="exit">EXIT</string>
     <string name="swap">SWAP</string>
     <string name="stats">STATS</string>
+    <string name="name">NAME</string>
+    <string name="push_button_to_swap">PUSH BUTTON TO SWAP</string>
 </resources>
