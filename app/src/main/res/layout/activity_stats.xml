@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/exit"
-        android:textSize="25sp"
+        android:textSize="24sp"
         android:gravity="center"/>
 
     <Button
@@ -50,13 +50,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="75dp"
         android:layout_marginBottom="16dp"
+        android:gravity="center|center_vertical"
+        android:text="@string/swap"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/swapButton2"
-        app:layout_constraintVertical_bias="0.0"
-        android:text="@string/swap"
-        android:textSize="15sp"
-        android:gravity="center|center_vertical"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextureView
         android:id="@+id/animal1"
