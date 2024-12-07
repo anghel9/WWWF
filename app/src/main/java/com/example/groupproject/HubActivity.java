@@ -38,6 +38,12 @@ public class HubActivity extends AppCompatActivity {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), 0));
             }
         });
+//        binding.editPartyButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(StatsActivity);
+//            }
+//        });
     }
 
     static Intent hubActivityIntentFactory(Context context){
