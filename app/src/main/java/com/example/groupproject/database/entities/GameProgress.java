@@ -18,6 +18,14 @@ public class GameProgress {
     private int level;
     private int experiencePoints;
 
+    public GameProgress() {}
+
+    public GameProgress(int userId, int level, int experiencePoints) {
+        this.userId = userId;
+        this.level = level;
+        this.experiencePoints = experiencePoints;
+    }
+
     public int getId() {
         return id;
     }

@@ -5,6 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import com.example.groupproject.database.AppDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(tableName = "userTable")

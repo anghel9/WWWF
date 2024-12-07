@@ -1,30 +1,49 @@
 package com.example.groupproject;
 
-public abstract class Animal {
-    String animalType = "";
+public class Animal {
+    private String animalName;
     private int hp = 100;
-    private  int attackPwr = 25;
-    private double accuracy = 0.35;
-    private double atkSpeed = 1.0;
+    private int attackPwr = 25;
+    private double accuracy = 0.35; // Represents the chance to hit (35%)
+    private double atkSpeed = 1.0; // How fast the animal attacks;
+    private int animalArena = 1; //The arena the animal is found in
 
-    Animal(){}
+    // Default Constructor
+    public Animal() {}
 
-    Animal(String animalType, double accuracy, double atkSpeed){
-        this.animalType = animalType;
+    // Parameterized Constructor
+    public Animal(String animalName, int hp, int attackPwr, double accuracy, double atkSpeed, int animalArena) {
+        this.animalName = animalName;
+        this.hp = hp;
+        this.attackPwr = attackPwr;
         this.accuracy = accuracy;
         this.atkSpeed = atkSpeed;
+        this.animalArena = animalArena;
     }
 
-    public boolean attack(Animal target, int roll) {
-        return false;
+    // Attack Method
+    // Modify the attack method to return a result string
+    public String attack(Animal target, int roll) {
+        if (roll <= this.getAccuracy() * 100) {
+            target.setHp(target.getHp() - this.getAttackPwr());
+            return this.getAnimalName() + " hit " + target.getAnimalName() + " for " + this.getAttackPwr() + " damage!";
+        }
+        return this.getAnimalName() + " missed the attack!";
     }
 
-    public String getAnimalType() {
-        return animalType;
+    // Getters and Setters
+    public String getAnimalName() {
+        return animalName;
+    }
+    public int getAnimalArena() {
+        return animalArena;
+    }
+    public void setAnimalArena(int animalArena) {
+        this.animalArena = animalArena;
     }
 
-    public void setAnimalType(String animalType) {
-        this.animalType = animalType;
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
     }
 
     public int getHp() {
@@ -32,7 +51,7 @@ public abstract class Animal {
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
+        this.hp = Math.max(hp, 0); // Prevent negative HP
     }
 
     public int getAttackPwr() {
@@ -57,5 +76,9 @@ public abstract class Animal {
 
     public void setAtkSpeed(double atkSpeed) {
         this.atkSpeed = atkSpeed;
+    }
+
+    public boolean isAlive() {
+        return this.hp > 0; // Check if the animal is still alive
     }
 }
