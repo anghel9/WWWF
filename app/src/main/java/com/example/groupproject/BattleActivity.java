@@ -120,8 +120,3 @@ public class BattleActivity extends AppCompatActivity {
         // Optionally enable a "Back" button or restart option
     }
 }
-
-    }
-
-
-}
