@@ -38,6 +38,7 @@ public class HubActivity extends AppCompatActivity {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), 0));
             }
         });
+        //TODO implement intent factories once they exist
 //        binding.editPartyButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
