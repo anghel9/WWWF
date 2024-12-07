@@ -15,4 +15,5 @@
     <string name="attack">Attack</string>
     <string name="sign_out">Sign Out</string>
     <string name="edit_party">Change Creature</string>
+    <string name="fight">Fight!</string>
 </resources>
