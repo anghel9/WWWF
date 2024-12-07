@@ -44,6 +44,12 @@ public class HubActivity extends AppCompatActivity {
 //                startActivity(StatsActivity);
 //            }
 //        });
+//        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(WorldActivity);
+//            }
+//        });
     }
 
     static Intent hubActivityIntentFactory(Context context){
