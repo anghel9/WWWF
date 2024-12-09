@@ -30,6 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
+    private static AppDatabase instance;
+
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
@@ -65,6 +67,16 @@ public abstract class AppDatabase extends RoomDatabase {
             });
         }
     };
+
+    public static synchronized AppDatabase getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, "app_database")
+                    .allowMainThreadQueries() // Needed if you're not using a background thread
+                    .build();
+        }
+        return instance;
+    }
 
     // DAOs
     public abstract UserDAO userDAO();

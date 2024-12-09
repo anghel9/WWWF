@@ -48,4 +48,9 @@ public class AnimalFactory {
         Random random = new Random();
         return creatures.get(random.nextInt(creatures.size()));
     }
+
+    public static Animal createBossAnimal() {
+        return new Animal("Boss", 300, 300, 80, 15, R.drawable.boss, 6);
+    }
+
 }

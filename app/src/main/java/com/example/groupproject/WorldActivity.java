@@ -3,44 +3,51 @@ package com.example.groupproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.groupproject.database.AppDatabase;
+import com.example.groupproject.database.UserDAO;
+import com.example.groupproject.database.factories.AnimalFactory;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.groupproject.databinding.ActivityWorldBinding;
 
 public class WorldActivity extends AppCompatActivity {
 
-    public static Intent worldActivityIntentFactory(Context applicationContext) {
-        return new Intent(applicationContext, WorldActivity.class);
-        //return new Intent(context, WorldActivity.class);
+    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    private UserDAO userDAO;
+    private int userId;
+
+    private Button bossButton;
+
+    static Intent worldActivityIntentFactory(Context context) {
+        return new Intent(context, WorldActivity.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_world);
 
-        ActivityWorldBinding binding = ActivityWorldBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        userDAO = AppDatabase.getInstance(this).userDAO();
+        userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
 
-        // Set up click listeners
-        binding.AtlantaBattleButton.setOnClickListener(view ->
-                startActivity(BattleActivity.battleActivityIntentFactory(this))
-        );
+        if (userId <= -1) {
+            Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-        binding.ForestBattleButton.setOnClickListener(view ->
-                startActivity(BattleActivity.battleActivityIntentFactory(this))
-        );
+        // Initialize the button to go to the boss fight
+        bossButton = findViewById(R.id.BossButton);
+        bossButton.setOnClickListener(v -> {
+            // Create a custom boss animal for this arena
+            Animal bossAnimal = AnimalFactory.createBossAnimal();
 
-        binding.BeachBattleButton.setOnClickListener(view ->
-                startActivity(BattleActivity.battleActivityIntentFactory(this))
-        );
-
-        binding.BossButton.setOnClickListener(view ->
-                startActivity(BattleActivity.battleActivityIntentFactory(this))
-        );
-
-        binding.ExitButton.setOnClickListener(view -> handleExit());
-    }
-
-    private void handleExit() {
-        finish();
+            // Start the BattleActivity with the custom Boss Animal
+            Intent battleIntent = BattleActivity.battleActivityIntentFactory(this, userId, bossAnimal);
+            startActivity(battleIntent);
+        });
     }
 }

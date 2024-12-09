@@ -72,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/swapCreatureButton"
+        android:id="@+id/exitBattleButton"
         android:layout_width="240dp"
         android:layout_height="80dp"
-        android:text="@string/switch_creature"
+        android:text="@string/exit_battle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -84,7 +84,7 @@
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:text="@string/attack"
-        app:layout_constraintBottom_toTopOf="@id/swapCreatureButton"
+        app:layout_constraintBottom_toTopOf="@id/exitBattleButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
