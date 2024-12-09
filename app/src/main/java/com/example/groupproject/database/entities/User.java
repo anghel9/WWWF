@@ -25,7 +25,7 @@ public class User {
 
     private int highestArena = 0;
 
-    private static int currentCreatureId = 1;
+    private int currentCreatureId = 1;
 
     public User() {}
 
@@ -67,7 +67,7 @@ public class User {
         this.currentCreatureId = currentCreatureId;
     }
 
-    public static int getCurrentCreatureId() {
+    public int getCurrentCreatureId() {
         return currentCreatureId;
     }
 

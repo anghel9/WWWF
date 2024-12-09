@@ -41,7 +41,7 @@ public interface UserDAO {
     int isUsernameTaken(String username);
 
     @Query("UPDATE " + AppDatabase.USER_TABLE + " SET currentCreatureId = :creatureId WHERE id = :userId")
-    void updateAssignedCreature(int userId, int creatureId);
+    void updateAssignedCreature(int creatureId, int userId);
 
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();

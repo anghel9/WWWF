@@ -16,11 +16,10 @@ import com.example.groupproject.database.entities.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, GameProgress.class, Inventory.class}, version = 7, exportSchema = false)
+@Database(entities = {User.class, GameProgress.class, Inventory.class}, version = 9, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";
-    public static final String ANIMAL_TABLE = "animalTable";
     public static final String GAME_PROGRESS_TABLE = "gameProgressTable";
     public static final String INVENTORY_TABLE = "inventoryTable";
 
