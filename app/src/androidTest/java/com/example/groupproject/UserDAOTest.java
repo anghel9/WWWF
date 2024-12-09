@@ -79,5 +79,10 @@ public class UserDAOTest {
         userDAO.insert(user);
 
         List<User> users = userDAO.getAllUsers();
+        User retrievedUser = users.get(0);
+        userDAO.delete(retrievedUser);
+
+        List<User> remainingUsers = userDAO.getAllUsers();
+        assertTrue(remainingUsers.isEmpty());
     }
 }
