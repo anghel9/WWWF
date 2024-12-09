@@ -27,12 +27,9 @@ public class LoginActivity extends AppCompatActivity {
 
         repository = AppRepository.getRepository(getApplication());
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                verifyUser();
-            }
-        });
+        binding.loginButton.setOnClickListener(view -> verifyUser());
+
+        binding.signUpButton.setOnClickListener(view -> handleSignUp());
 
     }
 
@@ -49,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext(), user.getId()));
-                    //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setText("");
@@ -68,8 +64,39 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    private void handleSignUp() {
+        String username = binding.userNameLoginEditText.getText().toString().trim();
+        String password = binding.passwordLoginEditText.getText().toString().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            toastMaker("Fill in all fields");
+            return;
+        }
+
+        LiveData<User> existingUser = repository.getUserByUserName(username);
+        existingUser.observe(this, user -> {
+            if (user != null) {
+                toastMaker("Username already exists. Choose a different one.");
+            } else {
+                User newUser = new User(username, password);
+                repository.insertUser(newUser);
+                toastMaker("User created successfully!");
+
+                binding.userNameLoginEditText.setText("");
+                binding.passwordLoginEditText.setText("");
+
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+
+
     static Intent loginIntentFactory(Context context) {
         return new Intent(context, LoginActivity.class);
     }
+
 }
 

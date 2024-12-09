@@ -11,6 +11,12 @@
     <string name="forest_battle">Forest Battle</string>
     <string name="atlanta_battle">Atlanta Battle</string>
     <string name="exit">Exit</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="password_signup">Password</string>
+    <string name="username_signup">Username</string>
+    <string name="dr_c_boss">Dr.C Boss</string>
+    <string name="meow">Meow</string>
     <string name="switch_creature">Switch Creature</string>
     <string name="attack">Attack</string>
     <string name="sign_out">Sign Out</string>

@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".WorldActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/meow"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_image" />
+
     <Button
         android:id="@+id/ExitButton"
         android:layout_width="wrap_content"
@@ -50,5 +62,17 @@
         app:layout_constraintEnd_toStartOf="@+id/BeachBattleButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BossButton"
+        android:layout_width="96dp"
+        android:layout_height="64dp"
+        android:text="@string/dr_c_boss"
+        app:layout_constraintBottom_toTopOf="@+id/BeachBattleButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@+id/AtlantaBattleButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
