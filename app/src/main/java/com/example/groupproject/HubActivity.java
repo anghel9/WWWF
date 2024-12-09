@@ -38,8 +38,8 @@ public class HubActivity extends AppCompatActivity {
 
         repository = AppRepository.getRepository(getApplication());
 
-//        loginUser();
-//        if(user.isAdmin()){
+        loginUser();
+//        if(!user.isAdmin()){
 //            binding.editUsersButton.setVisibility(View.GONE);
 //        }
 
