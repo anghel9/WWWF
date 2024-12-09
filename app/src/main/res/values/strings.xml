@@ -17,6 +17,7 @@
     <string name="edit_party">Change Creature</string>
     <string name="fight">Fight!</string>
     <string name="edit_users">Edit Users</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_user">Enter Username of User to delete:</string>
+    <string name="back">Back</string>
+    <string name="delete">Delete</string>
 </resources>

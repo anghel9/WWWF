@@ -2,10 +2,9 @@ package com.example.groupproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,53 +15,39 @@ import androidx.lifecycle.LiveData;
 
 import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.entities.User;
-import com.example.groupproject.databinding.ActivityHubBinding;
+import com.example.groupproject.databinding.ActivityDeleteUserBinding;
 
-public class HubActivity extends AppCompatActivity {
+public class DeleteUserActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    private ActivityDeleteUserBinding binding;
+    private int loggedInUserId = -1;
     private User user;
     private static final int LOGGED_OUT = -1;
-    private int loggedInUserId = -1;
     private AppRepository repository;
-    private ActivityHubBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHubBinding.inflate(getLayoutInflater());
+        binding = ActivityDeleteUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         repository = AppRepository.getRepository(getApplication());
-
         loginUser();
-
-        binding.signOutButton.setOnClickListener(new View.OnClickListener() {
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), 0));
+                startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext(), loggedInUserId));
             }
         });
-        //TODO implement intent factories once they exist
-//        binding.editPartyButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(StatsActivity);
-//            }
-//        });
-//        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(WorldActivity);
-//            }
-//        });
-        binding.editUsersButton.setOnClickListener(new View.OnClickListener() {
+        binding.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(DeleteUserActivity.deleteUserActivityIntentFactory(getApplicationContext(), loggedInUserId));
+                //attemptDelete();
             }
         });
     }
+
+
 
     private void loginUser() {
         if(loggedInUserId == LOGGED_OUT){
@@ -77,17 +62,13 @@ public class HubActivity extends AppCompatActivity {
             if(this.user != null){
                 invalidateOptionsMenu();
             }
-            if(!user.isAdmin()){
-                binding.editUsersButton.setVisibility(View.GONE);
-            }
         });
     }
 
-    static Intent hubActivityIntentFactory(Context context, int userId){
-        Intent intent = new Intent(context, HubActivity.class);
+    static Intent deleteUserActivityIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, DeleteUserActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
         //return new Intent(context, HubActivity.class);
     }
-
 }

@@ -100,13 +100,4 @@
         app:layout_constraintTop_toBottomOf="@id/signOutButton"
         />
 
-    <fragment
-        android:id="@+id/editUsersFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/partyView2"
-        app:layout_constraintTop_toBottomOf="@+id/editUsersButton"
-        app:layout_constraintVertical_bias="0.0" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
