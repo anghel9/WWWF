@@ -44,7 +44,7 @@ public class AnimalListFragment extends DialogFragment {
             if (getActivity() instanceof OnAnimalSelectedListener){
                 ((OnAnimalSelectedListener) getActivity()).onAnimalSelected(
                         animal.getName(),
-                        animal.getImageResId,
+                        animal.getImageResId(),
                         animal.getStats()
                 );
             }
