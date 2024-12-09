@@ -32,6 +32,10 @@ public class HubActivity extends AppCompatActivity {
         binding = ActivityHubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if(true){
+            binding.editUsersButton.setVisibility(View.GONE);
+        }
+
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

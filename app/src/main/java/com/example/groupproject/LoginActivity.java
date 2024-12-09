@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
                 verifyUser();
             }
         });
+
     }
 
     private void verifyUser() {
