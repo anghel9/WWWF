@@ -78,6 +78,6 @@ public class UserDAOTest {
         user.setAdmin(true);
         userDAO.insert(user);
 
-
+        List<User> users = userDAO.getAllUsers();
     }
 }
