@@ -48,6 +48,14 @@ public class HubActivity extends AppCompatActivity {
                                                              startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
                                                          }
                                                      });
+
+        if (user != null) {
+            startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), user.getId()));
+        } else {
+            Log.e("HubActivity", "User is null, cannot navigate to StatsActivity");
+        }
+
+
         binding.editPartyButton.setOnClickListener(view -> {
             startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), user.getId()));
         });

@@ -34,18 +34,22 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        //referencing xml file
         animalImage = findViewById(R.id.animalImage);
         animalName = findViewById(R.id.animalName);
         animalStats = findViewById(R.id.animalStats);
 
         //loginUser();
 
+        //sets listener for swap button and calls fragment
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
             AnimalListFragment fragment = new AnimalListFragment();
             fragment.show(getSupportFragmentManager(), "AnimalListFragment");
         });
 
+
+        //exit button to go back to hub
         Button exitButton = findViewById(R.id.statsExitButton);
         exitButton.setOnClickListener(view -> {
             Intent intent = new Intent(StatsActivity.this, HubActivity.class);
@@ -61,9 +65,11 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         updateAnimal(name, imageResId, stats);
     }
 
+
+    // Updates the views of the animal
     private void updateAnimal(String name, int imageResId, String stats){
         animalImage.setImageResource(imageResId);
         animalName.setText(name);
-        animalStats.setText("Stats: " + stats);
+        animalStats.setText("Stats: " + stats); //might have to update the way this looks
     }
 }
