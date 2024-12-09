@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.groupproject"
-        minSdk = 26 // Update this to at least 26
+        minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
