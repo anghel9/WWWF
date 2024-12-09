@@ -23,6 +23,8 @@ public class User {
 
     private int highestArena = 0;
 
+    private int currentCreatureId = 2;
+
     public User() {}
 
     @Ignore
@@ -30,6 +32,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.isAdmin = false;
+        this.highestArena = highestArena;
+        this.currentCreatureId = currentCreatureId;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, highestArena, isAdmin);
+        return Objects.hash(id, username, password, highestArena, isAdmin, currentCreatureId);
     }
 
     public int getHighestArena() {
@@ -55,6 +59,14 @@ public class User {
 
     public void setHighestArena(int highestArena) {
         this.highestArena = highestArena;
+    }
+
+    public void setCurrentCreatureId(int currentCreatureId) {
+        this.currentCreatureId = currentCreatureId;
+    }
+
+    public int getCurrentCreatureId() {
+        return currentCreatureId;
     }
 
     public int getId() {
