@@ -42,6 +42,12 @@ public class HubActivity extends AppCompatActivity {
 //        if(user.isAdmin()){
 //            binding.editUsersButton.setVisibility(View.GONE);
 //        }
+        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View view) {
+                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
+                                                         }
+                                                     });
 
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

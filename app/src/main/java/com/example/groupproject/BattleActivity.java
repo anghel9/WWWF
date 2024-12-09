@@ -1,5 +1,7 @@
 package com.example.groupproject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -34,6 +36,10 @@ public class BattleActivity extends AppCompatActivity {
     // Game Elements
     private Animal player;
     private Animal opponent;
+
+    public static Intent battleActivityIntentFactory(Context applicationContext) {
+        return new Intent(applicationContext, BattleActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
