@@ -31,13 +31,31 @@ public class WorldActivity extends AppCompatActivity {
                                                              startActivity(BattleActivity.battleActivityIntentFactory(getApplicationContext()));
                                                          }
                                                      });
+        binding.BeachBattleButton.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View view) {
+                                                             startActivity(BattleActivity.battleActivityIntentFactory(getApplicationContext()));
+                                                     }
+                                                     });
+        binding.ForestBattleButton.setOnClickListener(new View.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(View view) {
+                                                              startActivity(BattleActivity.battleActivityIntentFactory(getApplicationContext()));
+                                                          }
+                                                      });
+        binding.BossButton.setOnClickListener(new View.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(View view) {
+                                                      startActivity(BattleActivity.battleActivityIntentFactory(getApplicationContext()));
+                                                  }
+                                              });
 
         // Wire up buttons
         findViewById(R.id.ExitButton).setOnClickListener(view -> handleExit());
-        findViewById(R.id.ForestBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
-        findViewById(R.id.BeachBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
-        findViewById(R.id.AtlantaBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
-        findViewById(R.id.BossButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
+        //findViewById(R.id.ForestBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
+        //findViewById(R.id.BeachBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
+        //findViewById(R.id.AtlantaBattleButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
+        //findViewById(R.id.BossButton).setOnClickListener(view -> navigateTo(BattleActivity.class));
     }
 
     private void handleExit() {
@@ -46,6 +64,6 @@ public class WorldActivity extends AppCompatActivity {
 
     private void navigateTo(Class<?> targetActivity) {
         Intent intent = new Intent(this, targetActivity);
-        startActivity(intent);
+        startActivity(BattleActivity.battleActivityIntentFactory(getApplicationContext()));
     }
 }
