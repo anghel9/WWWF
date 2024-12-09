@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.groupproject.R;
+import com.example.groupproject.database.AppRepository;
+import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,12 +24,20 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    private AppRepository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        repository = AppRepository.getRepository(getApplication());
+//        User user = new User("Garry", "PASSWORD");
+//        User user2 = new User("admin", "admin");
+//        user2.setAdmin(true);
+//        repository.insertUser(user2);
+//        repository.insertUser(user);
 
         binding.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override

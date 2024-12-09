@@ -15,6 +15,7 @@ import com.example.groupproject.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
     private ActivityLoginBinding binding;
     private AppRepository repository;
 
@@ -26,7 +27,13 @@ public class LoginActivity extends AppCompatActivity {
 
         repository = AppRepository.getRepository(getApplication());
 
-        binding.loginButton.setOnClickListener(view -> verifyUser());
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifyUser();
+            }
+        });
+
     }
 
     private void verifyUser() {
@@ -42,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext(), user.getId()));
+                    //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setText("");

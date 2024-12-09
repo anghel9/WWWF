@@ -17,7 +17,7 @@ import com.example.groupproject.database.entities.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Animal.class, GameProgress.class, Inventory.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Animal.class, GameProgress.class, Inventory.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";
@@ -55,6 +55,16 @@ public abstract class AppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Log.i(AppDatabase.class.getSimpleName(), "Database created");
+            databaseWriteExecutor.execute(() -> {
+                UserDAO dao = INSTANCE.userDAO();
+                //TODO make sure this is fine
+                dao.deleteAll();
+                User admin = new User("adminUser", "adminUser");
+                admin.setAdmin(true);
+                dao.insert(admin);
+                User testUser1 = new User("Garry", "PASSWORD");
+                dao.insert(testUser1);
+            });
         }
     };
 
