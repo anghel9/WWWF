@@ -81,4 +81,7 @@ public class Animal {
         this.maxHp = maxHp;
     }
 
+    public String getStats() {
+        return ("HP: " + hp + "/" + maxHp + " Attack Power: " + attackPwr + " Accuracy: " + (accuracy * 100) + "%");
+    }
 }

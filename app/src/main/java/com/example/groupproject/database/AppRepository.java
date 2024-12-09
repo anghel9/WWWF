@@ -17,7 +17,6 @@ public class AppRepository {
 
     private static volatile AppRepository repository;
     private final UserDAO userDAO;
-    private final AnimalDAO animalDAO;
     private final GameProgressDAO gameProgressDAO; // Add reference to GameProgressDAO
     private final InventoryDAO inventoryDAO;       // Add reference to InventoryDAO
     private final ExecutorService executorService;
@@ -25,7 +24,6 @@ public class AppRepository {
     private AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         userDAO = db.userDAO();
-        animalDAO = db.animalDAO();
         gameProgressDAO = db.gameProgressDAO(); // Initialize GameProgressDAO
         inventoryDAO = db.inventoryDAO();       // Initialize InventoryDAO
         executorService = Executors.newFixedThreadPool(4);
@@ -94,7 +92,7 @@ public class AppRepository {
         executorService.execute(() -> inventoryDAO.deleteInventoryItem(inventory)); // Use InventoryDAO
     }
 
-    // AnimalDAO Methods
+    /* AnimalDAO Methods
     public LiveData<List<Animal>> getAllAnimals() {
         return animalDAO.getAllAnimals();
     }
@@ -126,4 +124,5 @@ public class AppRepository {
     public void deleteAllAnimals() {
         executorService.execute(animalDAO::deleteAll);
     }
+    *****/
 }

@@ -23,4 +23,9 @@
     <string name="edit_party">Change Creature</string>
     <string name="fight">Fight!</string>
     <string name="edit_users">Edit Users</string>
+    <string name="swap">SWAP</string>
+    <string name="stats">STATS</string>
+    <string name="name">NAME</string>
+    <string name="push_button_to_swap">PUSH BUTTON TO SWAP</string>
+    <string name="select_an_animal">Select an Animal</string>
 </resources>
