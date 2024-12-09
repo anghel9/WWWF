@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = AppRepository.getRepository(getApplication());
-//        User user = new User("Garry", "PASSWORD");
-//        User user2 = new User("admin", "admin");
-//        user2.setAdmin(true);
-//        repository.insertUser(user2);
-//        repository.insertUser(user);
+        User user1 = new User("Jerry", "PASSWORD");
+        User user3 = new User("admin2", "admin2");
+        user3.setAdmin(true);
+        repository.insertUser(user3);
+        repository.insertUser(user1);
 
         binding.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
