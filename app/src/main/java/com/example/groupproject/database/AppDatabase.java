@@ -16,7 +16,7 @@ import com.example.groupproject.database.entities.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, GameProgress.class, Inventory.class}, version = 6, exportSchema = false)
+@Database(entities = {User.class, GameProgress.class, Inventory.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";

@@ -1,6 +1,9 @@
 package com.example.groupproject;
 
+import static com.example.groupproject.database.factories.AnimalFactory.getAnimalById;
+
 import com.example.groupproject.database.entities.User;
+import com.example.groupproject.database.factories.AnimalFactory;
 
 import android.content.Context;
 import android.content.Intent;
@@ -53,7 +56,8 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
             finish();
         });
 
-        updateAnimal("Deer", R.drawable.deer, "HP: 120/120 Attack Power: 35 Accuracy: 50%");
+        Animal playerAnimal = AnimalFactory.getAnimalById(User.getCurrentCreatureId());
+        updateAnimal(playerAnimal.getAnimalName(), playerAnimal.getImageResId(), playerAnimal.getStats());
     }
 
     @Override

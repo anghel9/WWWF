@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.example.groupproject.Animal;
 import com.example.groupproject.database.AppDatabase;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class User {
 
     private int highestArena = 0;
 
-    private int currentCreatureId = 2;
+    private static int currentCreatureId = 1;
 
     public User() {}
 
@@ -65,7 +67,7 @@ public class User {
         this.currentCreatureId = currentCreatureId;
     }
 
-    public int getCurrentCreatureId() {
+    public static int getCurrentCreatureId() {
         return currentCreatureId;
     }
 

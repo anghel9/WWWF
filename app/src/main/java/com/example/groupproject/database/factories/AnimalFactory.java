@@ -22,6 +22,26 @@ public class AnimalFactory {
         return creatures;
     }
 
+
+    public static Animal getAnimalById(int id) {
+        switch (id) {
+            case 1:
+                return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
+            case 2:
+                return new Animal("The Wizard", 300, 300, 80, 25, R.drawable.wizard, 2);
+            case 3:
+                return new Animal("Bass", 120, 120, 35, 50, R.drawable.bass, 3);
+            case 4:
+                return new Animal("Salmon", 120, 120, 35, 50, R.drawable.salmon, 4);
+            case 5:
+                return new Animal("PitBull", 120, 120, 35, 50, R.drawable.pitbull, 5);
+
+            default:
+                return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
+            }
+    }
+
+
     // Method to randomly select a creature
     public static Animal getRandomCreature() {
         List<Animal> creatures = getCreatures();

@@ -40,6 +40,9 @@ public interface UserDAO {
     @Query("SELECT COUNT(*) FROM " + AppDatabase.USER_TABLE + " WHERE username = :username")
     int isUsernameTaken(String username);
 
+    @Query("UPDATE " + AppDatabase.USER_TABLE + " SET currentCreatureId = :creatureId WHERE id = :userId")
+    void updateAssignedCreature(int userId, int creatureId);
+
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();
 }

@@ -10,12 +10,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.groupproject.database.entities.User;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.groupproject.database.AppDatabase;
 import com.example.groupproject.database.factories.AnimalFactory;
 
 import java.util.ArrayList;
@@ -71,9 +75,7 @@ public class BattleActivity extends AppCompatActivity {
         random = new Random();
 
         // Initialize Creatures
-        //TODO: Replace with:
-        //User.getCreature(username);
-        player = AnimalFactory.getRandomCreature();
+        player = AnimalFactory.getAnimalById(User.getCurrentCreatureId());
 
         //TODO: Replace with:
         //Logic for specific creatures on specific levels
