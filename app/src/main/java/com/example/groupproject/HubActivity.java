@@ -48,6 +48,9 @@ public class HubActivity extends AppCompatActivity {
                                                              startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
                                                          }
                                                      });
+        binding.editPartyButton.setOnClickListener(view -> {
+            startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), user.getId()));
+        });
 
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

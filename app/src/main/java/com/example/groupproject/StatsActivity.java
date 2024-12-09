@@ -1,5 +1,8 @@
 package com.example.groupproject;
 
+import com.example.groupproject.database.entities.User;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,9 +17,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class StatsActivity extends AppCompatActivity implements AnimalListFragment.OnAnimalSelectedListener {
 
+    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+
     private ImageView animalImage;
     private TextView animalName;
     private TextView animalStats;
+
+    public static Intent statsActivityIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, StatsActivity.class);
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);  // Pass the user ID to StatsActivity
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,8 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         animalImage = findViewById(R.id.animalImage);
         animalName = findViewById(R.id.animalName);
         animalStats = findViewById(R.id.animalStats);
+
+        //loginUser();
 
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
@@ -40,7 +53,7 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
             finish();
         });
 
-        updateAnimal("Mouse", R.drawable.mouse, "HP: 100, Attack :50");
+        updateAnimal("Deer", R.drawable.deer, "HP: 120/120 Attack Power: 35 Accuracy: 50%");
     }
 
     @Override

@@ -9,7 +9,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.groupproject.database.entities.Animal;
 import com.example.groupproject.database.entities.GameProgress;
 import com.example.groupproject.database.entities.Inventory;
 import com.example.groupproject.database.entities.User;
@@ -17,7 +16,7 @@ import com.example.groupproject.database.entities.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Animal.class, GameProgress.class, Inventory.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, GameProgress.class, Inventory.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";
@@ -75,5 +74,4 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract GameProgressDAO gameProgressDAO();
 
-    public abstract AnimalDAO animalDAO();
 }

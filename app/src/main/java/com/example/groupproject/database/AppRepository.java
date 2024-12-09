@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.groupproject.database.entities.Animal;
 import com.example.groupproject.database.entities.GameProgress;
 import com.example.groupproject.database.entities.Inventory;
 import com.example.groupproject.database.entities.User;

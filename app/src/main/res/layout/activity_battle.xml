@@ -8,20 +8,6 @@
     tools:context=".BattleActivity">
 
 
-    <RatingBar
-        android:id="@+id/opponentRemainingCreatures"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RatingBar
-        android:id="@+id/playerRemainingCreatures"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <ProgressBar
         android:id="@+id/opponentHealthBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -51,15 +37,16 @@
         android:id="@+id/opponentCreatureName"
         android:layout_width="150dp"
         android:layout_height="50dp"
+        android:layout_marginTop="57dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opponentRemainingCreatures" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/opponentCreatureHealth"
         android:layout_width="90dp"
         android:layout_height="50dp"
         app:layout_constraintStart_toEndOf="@id/opponentCreatureName"
-        app:layout_constraintTop_toBottomOf="@id/opponentRemainingCreatures" />
+        tools:layout_editor_absoluteY="57dp" />
 
     <TextView
         android:id="@+id/playerCreatureHealth"
@@ -88,8 +75,9 @@
         android:id="@+id/swapCreatureButton"
         android:layout_width="240dp"
         android:layout_height="80dp"
+        android:layout_marginBottom="57dp"
         android:text="@string/switch_creature"
-        app:layout_constraintBottom_toTopOf="@id/playerRemainingCreatures"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button

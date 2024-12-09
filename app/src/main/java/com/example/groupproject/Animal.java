@@ -7,15 +7,17 @@ public class Animal {
     private int attackPwr = 25;
     private double accuracy = 0.35;
     private int imageResId; // Drawable resource ID for the image
+    private int animalID = 0;
 
     // Updated constructor to match the fields
-    public Animal(String animalName, int hp, int maxHp, int attackPwr, double accuracy, int imageResId) {
+    public Animal(String animalName, int hp, int maxHp, int attackPwr, double accuracy, int imageResId, int animalID) {
         this.animalName = animalName;
         this.hp = hp;
         this.maxHp = maxHp;
         this.attackPwr = attackPwr;
         this.accuracy = accuracy;
         this.imageResId = imageResId;
+        this.animalID = animalID;
     }
 
     // Getter and Setter for Drawable Resource ID
@@ -25,6 +27,11 @@ public class Animal {
 
     public void setImageResId(int imageResId) {
         this.imageResId = imageResId;
+    }
+
+    // Getter for Animal ID Number
+    public int getAnimalID() {
+        return animalID;
     }
 
     // Attack Method

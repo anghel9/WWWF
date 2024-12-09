@@ -39,8 +39,11 @@ public class BattleActivity extends AppCompatActivity {
     private Animal player;
     private Animal opponent;
 
-    public static Intent battleActivityIntentFactory(Context applicationContext) {
-        return new Intent(applicationContext, BattleActivity.class);
+    public static Intent battleActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, BattleActivity.class);
+        //intent.putExtra("playerAnimal", player);
+        //intent.putExtra("opponentAnimal", opponent);
+        return intent;
     }
 
     @Override
@@ -68,7 +71,12 @@ public class BattleActivity extends AppCompatActivity {
         random = new Random();
 
         // Initialize Creatures
+        //TODO: Replace with:
+        //User.getCreature(username);
         player = AnimalFactory.getRandomCreature();
+
+        //TODO: Replace with:
+        //Logic for specific creatures on specific levels
         opponent = AnimalFactory.getRandomCreature();
 
         // Ensure both creatures are alive at the start of the battle

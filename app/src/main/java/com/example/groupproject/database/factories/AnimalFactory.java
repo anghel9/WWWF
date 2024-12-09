@@ -13,11 +13,11 @@ public class AnimalFactory {
     public static List<Animal> getCreatures() {
         List<Animal> creatures = new ArrayList<>();
 
-        creatures.add(new Animal("Deer", 120, 120, 35, 50, R.drawable.deer));
-        creatures.add(new Animal("The Wizard", 300, 300, 80, 25, R.drawable.wizard));
-        creatures.add(new Animal("Bass", 120, 120, 35, 50, R.drawable.bass));
-        creatures.add(new Animal("Salmon", 120, 120, 35, 50, R.drawable.salmon));
-        creatures.add(new Animal("PitBull", 120, 120, 35, 50, R.drawable.pitbull));
+        creatures.add(new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1));
+        creatures.add(new Animal("The Wizard", 300, 300, 80, 25, R.drawable.wizard, 2));
+        creatures.add(new Animal("Bass", 120, 120, 35, 50, R.drawable.bass, 3));
+        creatures.add(new Animal("Salmon", 120, 120, 35, 50, R.drawable.salmon, 4));
+        creatures.add(new Animal("PitBull", 120, 120, 35, 50, R.drawable.pitbull, 5));
 
         return creatures;
     }
