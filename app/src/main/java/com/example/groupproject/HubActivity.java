@@ -25,13 +25,10 @@ public class HubActivity extends AppCompatActivity {
     private static final int LOGGED_OUT = -1;
     private int loggedInUserId = -1;
     private AppRepository repository;
+    private ActivityHubBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        ActivityHubBinding binding;
-
-
         super.onCreate(savedInstanceState);
         binding = ActivityHubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -39,9 +36,6 @@ public class HubActivity extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
 
         loginUser();
-//        if(!user.isAdmin()){
-//            binding.editUsersButton.setVisibility(View.GONE);
-//        }
 
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +70,9 @@ public class HubActivity extends AppCompatActivity {
             this.user = user;
             if(this.user != null){
                 invalidateOptionsMenu();
+            }
+            if(!user.isAdmin()){
+                binding.editUsersButton.setVisibility(View.GONE);
             }
         });
     }
