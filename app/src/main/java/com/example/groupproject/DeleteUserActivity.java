@@ -42,7 +42,7 @@ public class DeleteUserActivity extends AppCompatActivity {
         binding.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptDelete();
+                attemptDelete();
             }
         });
     }
