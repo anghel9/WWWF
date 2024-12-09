@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.groupproject.database.entities.GameProgress;
 
@@ -21,6 +22,9 @@ public interface GameProgressDAO {
 
     @Query("SELECT * FROM " + AppDatabase.GAME_PROGRESS_TABLE)
     LiveData<List<GameProgress>> getAllGameProgress();
+
+    @Update
+    void updateGameProgress(GameProgress gameProgress);
 
     @Delete
     void deleteGameProgress(GameProgress gameProgress);

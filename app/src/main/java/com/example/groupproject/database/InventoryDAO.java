@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.groupproject.database.entities.Inventory;
 
@@ -24,6 +25,9 @@ public interface InventoryDAO {
 
     @Delete
     void deleteInventoryItem(Inventory inventory);
+
+    @Update
+    void updateInventoryItem(Inventory inventory);
 
     @Query("DELETE FROM " + AppDatabase.INVENTORY_TABLE)
     void deleteAllInventory();
