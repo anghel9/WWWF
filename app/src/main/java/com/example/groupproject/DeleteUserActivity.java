@@ -47,7 +47,25 @@ public class DeleteUserActivity extends AppCompatActivity {
         });
     }
 
-
+    void attemptDelete(){
+        String username = binding.userNameDeleteEditText.getText().toString().trim();
+        if (username.isEmpty()) {
+            Toast.makeText(this, "Username is empty, fill it", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LiveData<User> userObserver = repository.getUserByUserName(username);
+        userObserver.observe(this, user -> {
+            if(user == null){
+                Toast.makeText(this, "User does not exist", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(user.isAdmin()){
+                Toast.makeText(this, "Cannot delete admin user", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            repository.deleteUser(user);
+        });
+    }
 
     private void loginUser() {
         if(loggedInUserId == LOGGED_OUT){
