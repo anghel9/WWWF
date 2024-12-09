@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -68,6 +70,13 @@ public class BattleActivity extends AppCompatActivity {
         // Initialize Creatures
         player = AnimalFactory.getRandomCreature();
         opponent = AnimalFactory.getRandomCreature();
+
+        // Ensure both creatures are alive at the start of the battle
+        if (player.getHp() <= 0 || opponent.getHp() <= 0) {
+            Toast.makeText(this, "Invalid battle state. Restarting battle!", Toast.LENGTH_SHORT).show();
+            recreate(); // Restart activity
+            return;
+        }
 
         // Set Initial UI
         updateUI();
@@ -136,7 +145,17 @@ public class BattleActivity extends AppCompatActivity {
 
     private void endBattle() {
         adapter.addLog("Battle Over!");
-        // Optional: Display buttons or other end-of-battle UI elements
+
+        // Delay the transition to WorldActivity to allow users to see the "Battle Over!" message
+        handler.postDelayed(() -> {
+            Intent intent = WorldActivity.worldActivityIntentFactory(this);
+            startActivity(intent);
+            finish(); // Close the current BattleActivity
+            // Show a congratulatory message
+            runOnUiThread(() ->
+                    Toast.makeText(this, "Congratulations on completing the battle!", Toast.LENGTH_LONG).show()
+            );
+        }, 2000); // 2-second delay to allow for UI updates
     }
 
     private void updateUI() {

@@ -8,6 +8,11 @@ import com.example.groupproject.databinding.ActivityWorldBinding;
 
 public class WorldActivity extends AppCompatActivity {
 
+    public static Intent worldActivityIntentFactory(Context applicationContext) {
+        return new Intent(applicationContext, WorldActivity.class);
+        //return new Intent(context, WorldActivity.class);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
