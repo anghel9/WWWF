@@ -16,6 +16,18 @@
             android:name=".BattleActivity"
             android:exported="false" />
         <activity
+            android:name=".BeachBattleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForestBattleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AtlantaBattleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BossBattleActivity"
+            android:exported="false" />
+        <activity
             android:name=".WorldActivity"
             android:exported="false" />
         <activity

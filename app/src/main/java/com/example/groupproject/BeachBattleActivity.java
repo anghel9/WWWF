@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.groupproject.database.factories.AnimalFactory;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,13 +33,8 @@ public class BeachBattleActivity extends AppCompatActivity {
     private Random random;
 
     // Game Elements
-    private Animal player;
-    private Animal opponent;
-
-    static Intent battleActivityIntentFactory(Context context) {
-        Intent intent = new Intent(context, BeachBattleActivity.class);
-        return intent;
-    }
+    private Animal player = AnimalFactory.getRandomCreature();
+    private Animal opponent = AnimalFactory.getRandomCreature();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +69,9 @@ public class BeachBattleActivity extends AppCompatActivity {
 
         updateUI();
 
+        handler.postDelayed(this::playerTurn, 2000);
+
+        attackButton.setEnabled(true);
         attackButton.setOnClickListener(v -> {
             playerTurn();
             attackButton.setEnabled(false);
@@ -84,7 +84,7 @@ public class BeachBattleActivity extends AppCompatActivity {
             return;
         }
 
-        int roll = random.nextInt(100) + 1;
+        int roll = random.nextInt(100);
         String result = player.attack(opponent);
         adapter.addLog(result);
 
@@ -115,6 +115,7 @@ public class BeachBattleActivity extends AppCompatActivity {
             endBattle();
         } else {
             attackButton.setEnabled(true);
+            handler.postDelayed(this::playerTurn, 1000);
         }
     }
 
@@ -149,4 +150,9 @@ public class BeachBattleActivity extends AppCompatActivity {
 
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
     }
+
+    static Intent beachBattleIntentFactory(Context context) {
+        return new Intent(context, BeachBattleActivity.class);
+    }
+
 }

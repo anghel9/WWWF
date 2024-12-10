@@ -34,11 +34,6 @@ public class ForestBattleActivity extends AppCompatActivity {
     private Animal player;
     private Animal opponent;
 
-    static Intent battleActivityIntentFactory(Context context) {
-        Intent intent = new Intent(context, ForestBattleActivity.class);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,4 +144,9 @@ public class ForestBattleActivity extends AppCompatActivity {
 
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
     }
+
+    static Intent forestBattleIntentFactory(Context context) {
+        return new Intent(context, ForestBattleActivity.class);
+    }
+
 }

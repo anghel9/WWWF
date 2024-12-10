@@ -34,11 +34,6 @@ public class AtlantaBattleActivity extends AppCompatActivity {
     private Animal player;
     private Animal opponent;
 
-    static Intent battleActivityIntentFactory(Context context) {
-        Intent intent = new Intent(context, AtlantaBattleActivity.class);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,5 +143,9 @@ public class AtlantaBattleActivity extends AppCompatActivity {
         opponentCreatureView.setImageResource(opponent.getImageResId());
 
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
+    }
+
+    static Intent atlantaBattleIntentFactory(Context context) {
+        return new Intent(context, AtlantaBattleActivity.class);
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+
 import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityHubBinding;
