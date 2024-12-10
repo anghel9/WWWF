@@ -65,6 +65,14 @@ public class AppRepository {
         executorService.execute(userDAO::deleteAll);
     }
 
+    public int isUsernameTaken(String username) {
+        return userDAO.isUsernameTaken(username);
+    }
+
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userDAO.authenticateUser(username, password);
+    }
+
     // GameProgressDAO Methods
     public LiveData<GameProgress> getGameProgressForUser(int userId) {
         return gameProgressDAO.getGameProgressForUser(userId); // Use GameProgressDAO
@@ -99,9 +107,7 @@ public class AppRepository {
         return userDAO.getUserByCreatureId(creatureId);
     }
 
-    public int isUsernameTaken(String username) {
-        return userDAO.isUsernameTaken(username);
-    }
+
 
     /* AnimalDAO Methods
     public LiveData<List<Animal>> getAllAnimals() {

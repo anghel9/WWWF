@@ -13,11 +13,15 @@ import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityLoginBinding;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    private static final int SIGN_UP_REQUEST_CODE = 1;
     private ActivityLoginBinding binding;
     private AppRepository repository;
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,73 +32,48 @@ public class LoginActivity extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(view -> verifyUser());
-
-        binding.signUpButton.setOnClickListener(view -> handleSignUp());
-
+        binding.signUpButton.setOnClickListener(view -> {
+            Intent intent = SignUpActivity.signUpIntentFactory(this);
+            startActivityForResult(intent, SIGN_UP_REQUEST_CODE);
+        });
     }
 
     private void verifyUser() {
         String username = binding.userNameLoginEditText.getText().toString().trim();
-
-        if (username.isEmpty()) {
-            Toast.makeText(this, "Username is empty, fill it", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        LiveData<User> userObserver = repository.getUserByUserName(username);
-        userObserver.observe(this, user -> {
-            if (user != null) {
-                String password = binding.passwordLoginEditText.getText().toString();
-                if (password.equals(user.getPassword())) {
-                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext(), user.getId()));
-                } else {
-                    toastMaker("Invalid password");
-                    binding.passwordLoginEditText.setText("");
-                    binding.passwordLoginEditText.setSelection(0);
-                }
-            } else {
-                toastMaker(String.format("User %s is not valid", username));
-                binding.userNameLoginEditText.setText("");
-                binding.userNameLoginEditText.setSelection(0);
-            }
-        });
-    }
-
-    private void toastMaker(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    private void handleSignUp() {
-        String username = binding.userNameLoginEditText.getText().toString().trim();
-        String password = binding.passwordLoginEditText.getText().toString().trim();
+        String password = binding.passwordLoginEditText.getText().toString();
 
         if (username.isEmpty() || password.isEmpty()) {
-            toastMaker("Fill in all fields");
+            Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        LiveData<User> existingUser = repository.getUserByUserName(username);
-        existingUser.observe(this, user -> {
-            if (user != null) {
-                toastMaker("Username already exists. Choose a different one.");
-            } else {
-                User newUser = new User(username, password);
-                repository.insertUser(newUser);
-                toastMaker("User created successfully!");
-
-                binding.userNameLoginEditText.setText("");
-                binding.passwordLoginEditText.setText("");
-
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        executorService.execute(() -> {
+            User user = repository.getUserByUsernameAndPassword(username, password);
+            runOnUiThread(() -> {
+                if (user != null) {
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext());
+                } else {
+                    Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == SIGN_UP_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String username = data.getStringExtra("username");
+            if (username != null) {
+                binding.userNameLoginEditText.setText(username);
+                Toast.makeText(this, "Sign up successful! Please log in.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
-    static Intent loginIntentFactory(Context context) {
+    public static Intent loginIntentFactory(Context context) {
         return new Intent(context, LoginActivity.class);
     }
 
