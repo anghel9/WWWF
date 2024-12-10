@@ -3,7 +3,6 @@ package com.example.groupproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +13,8 @@ import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final int SIGN_UP_REQUEST_CODE = 1;
 
     private ActivityLoginBinding binding;
     private AppRepository repository;
@@ -28,8 +29,10 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.loginButton.setOnClickListener(view -> verifyUser());
 
-        binding.signUpButton.setOnClickListener(view -> handleSignUp());
-
+        binding.signUpButton.setOnClickListener(view -> {
+            Intent intent = SignUpActivity.signUpIntentFactory(this);
+            startActivityForResult(intent, SIGN_UP_REQUEST_CODE);
+        });
     }
 
     private void verifyUser() {
@@ -45,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    startActivity(MainActivity.mainActivityIntentFactory(this, user.getId()));
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setText("");
@@ -63,39 +66,20 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void handleSignUp() {
-        String username = binding.userNameLoginEditText.getText().toString().trim();
-        String password = binding.passwordLoginEditText.getText().toString().trim();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if (username.isEmpty() || password.isEmpty()) {
-            toastMaker("Fill in all fields");
-            return;
-        }
-
-        LiveData<User> existingUser = repository.getUserByUserName(username);
-        existingUser.observe(this, user -> {
-            if (user != null) {
-                toastMaker("Username already exists. Choose a different one.");
-            } else {
-                User newUser = new User(username, password);
-                repository.insertUser(newUser);
-                toastMaker("User created successfully!");
-
-                binding.userNameLoginEditText.setText("");
-                binding.passwordLoginEditText.setText("");
-
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+        if (requestCode == SIGN_UP_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String username = data.getStringExtra("username");
+            if (username != null) {
+                binding.userNameLoginEditText.setText(username);
+                Toast.makeText(this, "Sign up successful! Please log in.", Toast.LENGTH_SHORT).show();
             }
-        });
+        }
     }
-
-
 
     static Intent loginIntentFactory(Context context) {
         return new Intent(context, LoginActivity.class);
     }
-
 }
-

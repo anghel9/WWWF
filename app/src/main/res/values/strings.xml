@@ -17,4 +17,7 @@
     <string name="username_signup">Username</string>
     <string name="dr_c_boss">Dr.C Boss</string>
     <string name="meow">Meow</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="sign_up_new">Sign Up</string>
 </resources>

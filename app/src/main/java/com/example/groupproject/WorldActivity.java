@@ -14,7 +14,7 @@ public class WorldActivity extends AppCompatActivity {
 
         ActivityWorldBinding binding = ActivityWorldBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        /*
         // Set up click listeners
         binding.AtlantaBattleButton.setOnClickListener(view ->
                 startActivity(BattleActivity.battleActivityIntentFactory(this))
@@ -30,7 +30,7 @@ public class WorldActivity extends AppCompatActivity {
 
         binding.BossButton.setOnClickListener(view ->
                 startActivity(BattleActivity.battleActivityIntentFactory(this))
-        );
+        ); */
 
         binding.ExitButton.setOnClickListener(view -> handleExit());
     }
