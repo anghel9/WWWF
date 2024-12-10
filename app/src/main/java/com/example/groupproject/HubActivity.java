@@ -20,11 +20,12 @@ public class HubActivity extends AppCompatActivity {
     private static final int LOGGED_OUT = -1;
     private int loggedInUserId = LOGGED_OUT;
     private User user = null;
+    private ActivityHubBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityHubBinding binding = ActivityHubBinding.inflate(getLayoutInflater());
+        binding = ActivityHubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = AppRepository.getRepository(getApplication());
 
@@ -70,6 +71,25 @@ public class HubActivity extends AppCompatActivity {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), LOGGED_OUT));
             }
         });
+        //TODO implement intent factories once they exist
+//        binding.editPartyButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(StatsActivity);
+//            }
+//        });
+//        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(WorldActivity);
+//            }
+//        });
+        binding.editUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(DeleteUserActivity.deleteUserActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
     }
 
 
@@ -89,6 +109,9 @@ public class HubActivity extends AppCompatActivity {
             this.user = user;
             if(this.user != null){
                 invalidateOptionsMenu();
+            }
+            if(!user.isAdmin()){
+                binding.editUsersButton.setVisibility(View.GONE);
             }
         });
     }
