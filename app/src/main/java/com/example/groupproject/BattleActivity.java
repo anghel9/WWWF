@@ -39,7 +39,8 @@ public class BattleActivity extends AppCompatActivity {
     private Handler handler;
     private Random random;
     private UserDAO userDAO;
-    private User currentUser;
+    private int userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
+    private User currentUser = AppDatabase.getInstance(this).userDAO().getUserById(userId).getValue();
 
     // Game Elements
     private Animal player;

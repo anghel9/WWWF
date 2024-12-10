@@ -91,6 +91,18 @@ public class AppRepository {
         executorService.execute(() -> inventoryDAO.deleteInventoryItem(inventory)); // Use InventoryDAO
     }
 
+    public void updateAssignedCreature(int creatureId, int userId) {
+        userDAO.updateAssignedCreature(creatureId, userId);
+    }
+
+    public LiveData<User> getUserByCreatureId(int creatureId) {
+        return userDAO.getUserByCreatureId(creatureId);
+    }
+
+    public int isUsernameTaken(String username) {
+        return userDAO.isUsernameTaken(username);
+    }
+
     /* AnimalDAO Methods
     public LiveData<List<Animal>> getAllAnimals() {
         return animalDAO.getAllAnimals();

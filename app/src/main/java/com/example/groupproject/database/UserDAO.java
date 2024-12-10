@@ -52,4 +52,6 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE currentCreatureId = :creatureId")
     LiveData<User> getUserByCreatureId(int creatureId);
+
+    @Query
 }

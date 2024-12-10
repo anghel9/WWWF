@@ -18,15 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public class StatsActivity extends AppCompatActivity implements AnimalListFragment.OnAnimalSelectedListener {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
-    private static final String BATTLE_ACTIVITY_BOSS_ANIMAL = "com.example.groupproject.BATTLE_ACTIVITY_BOSS_ANIMAL";
 
     private ImageView animalImage;
     private TextView animalName;
     private TextView animalStats;
-
-    private UserDAO userDAO;
-    private User currentUser;
-    private int userId;
 
     public static Intent statsActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, StatsActivity.class);
@@ -43,9 +38,6 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         animalName = findViewById(R.id.animalName);
         animalStats = findViewById(R.id.animalStats);
 
-        //loginUser();
-        userDAO = AppDatabase.getInstance(this).userDAO();
-
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
             AnimalListFragment fragment = new AnimalListFragment();
@@ -58,23 +50,6 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
             startActivity(intent);
             finish();
         });
-
-        // Fetch the user ID from the intentcurrentUser = userDAO.getUserById(userId);
-        userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
-        if (userId <= -1) {
-            Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-
-        }
-        currentUser = userDAO.getUserById(userId).getValue();
-        if (currentUser == null) {
-            Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-        // Set the initial animal
-        // updateAnimal(currentUser.getAnimalName(), currentUser.getCurrentCreatureImage(), currentUser.getCurrentCreatureStats());
 
     }
 
