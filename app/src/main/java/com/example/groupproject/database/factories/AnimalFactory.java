@@ -2,6 +2,7 @@ package com.example.groupproject.database.factories;
 
 import com.example.groupproject.Animal;
 import com.example.groupproject.R;
+import com.example.groupproject.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class AnimalFactory {
                 return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
             }
     }
-
 
     // Method to randomly select a creature
     public static Animal getRandomCreature() {

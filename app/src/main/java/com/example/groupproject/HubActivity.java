@@ -15,7 +15,6 @@ import com.example.groupproject.databinding.ActivityHubBinding;
 
 public class HubActivity extends AppCompatActivity {
     private AppRepository repository;
-    private User user;
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
     private static final int LOGGED_OUT = -1;
     private int loggedInUserId = LOGGED_OUT;
@@ -39,7 +38,7 @@ public class HubActivity extends AppCompatActivity {
         binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
                                                          @Override
                                                          public void onClick(View view) {
-                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
+                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId));
                                                          }
                                                      });
         binding.editPartyButton.setOnClickListener(view -> {

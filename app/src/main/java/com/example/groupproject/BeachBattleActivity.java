@@ -128,7 +128,7 @@ public class BeachBattleActivity extends AppCompatActivity {
         }
 
         handler.postDelayed(() -> {
-            Intent intent = WorldActivity.worldActivityIntentFactory(this);
+            Intent intent = WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId);
             startActivity(intent);
             finish();
             Toast.makeText(this, player.isAlive() ? "Congratulations on winning the battle!" : "You lost the battle.", Toast.LENGTH_LONG).show();
