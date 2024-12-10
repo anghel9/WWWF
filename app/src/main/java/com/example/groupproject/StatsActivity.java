@@ -17,15 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StatsActivity extends AppCompatActivity implements AnimalListFragment.OnAnimalSelectedListener {
 
-    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    //private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
 
     private ImageView animalImage;
     private TextView animalName;
     private TextView animalStats;
 
-    public static Intent statsActivityIntentFactory(Context context, int userId) {
+    public static Intent statsActivityIntentFactory(Context context) {
         Intent intent = new Intent(context, StatsActivity.class);
-        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);  // Pass the user ID to StatsActivity
         return intent;
     }
 

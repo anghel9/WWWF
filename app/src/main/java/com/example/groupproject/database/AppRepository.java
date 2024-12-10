@@ -4,9 +4,11 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.groupproject.Animal;
 import com.example.groupproject.database.entities.GameProgress;
 import com.example.groupproject.database.entities.Inventory;
 import com.example.groupproject.database.entities.User;
+import com.example.groupproject.database.factories.AnimalFactory;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -95,45 +97,29 @@ public class AppRepository {
         userDAO.updateAssignedCreature(creatureId, userId);
     }
 
-    public LiveData<User> getUserByCreatureId(int creatureId) {
-        return userDAO.getUserByCreatureId(creatureId);
+    public Animal getAssignedCreature(int userId) {
+        User user = userDAO.getUserById(userId).getValue();
+        if (user != null) {
+            int creatureId = user.getCurrentCreatureId();
+            return AnimalFactory.getAnimalById(creatureId);
+        }
+        return null;
     }
 
     public int isUsernameTaken(String username) {
         return userDAO.isUsernameTaken(username);
     }
 
-    /* AnimalDAO Methods
-    public LiveData<List<Animal>> getAllAnimals() {
-        return animalDAO.getAllAnimals();
+    public User authenticateUser(String username, String password) {
+        return userDAO.authenticateUser(username, password);
     }
 
-    public LiveData<Animal> getAnimalById(int id) {
-        return animalDAO.getAnimalById(id);
+    public int countUsers() {
+        return userDAO.countUsers();
     }
 
-    public LiveData<List<Animal>> getAnimalsByType(String type) {
-        return animalDAO.getAnimalsByType(type);
+    public LiveData<User> getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
     }
 
-    public LiveData<List<Animal>> getAnimalsByArena(String arena) {
-        return animalDAO.getAnimalsByArena(arena);
-    }
-
-    public void insertAnimal(Animal animal) {
-        executorService.execute(() -> animalDAO.insert(animal));
-    }
-
-    public void updateAnimal(Animal animal) {
-        executorService.execute(() -> animalDAO.update(animal));
-    }
-
-    public void deleteAnimal(Animal animal) {
-        executorService.execute(() -> animalDAO.delete(animal));
-    }
-
-    public void deleteAllAnimals() {
-        executorService.execute(animalDAO::deleteAll);
-    }
-    *****/
 }

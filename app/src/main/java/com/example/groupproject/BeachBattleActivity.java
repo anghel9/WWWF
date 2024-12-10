@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BattleActivity extends AppCompatActivity {
+public class BeachBattleActivity extends AppCompatActivity {
 
     private TextView opponentCreatureName, opponentCreatureHealth, playerCreatureName, playerCreatureHealth;
     private ProgressBar opponentHealthBar, playerHealthBar;
@@ -35,7 +35,7 @@ public class BattleActivity extends AppCompatActivity {
     private Animal opponent;
 
     static Intent battleActivityIntentFactory(Context context) {
-        Intent intent = new Intent(context, BattleActivity.class);
+        Intent intent = new Intent(context, BeachBattleActivity.class);
         return intent;
     }
 

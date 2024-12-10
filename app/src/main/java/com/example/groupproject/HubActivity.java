@@ -2,16 +2,10 @@ package com.example.groupproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 
 import com.example.groupproject.database.AppRepository;
@@ -19,12 +13,11 @@ import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityHubBinding;
 
 public class HubActivity extends AppCompatActivity {
-
-    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
-    private User user;
-    private static final int LOGGED_OUT = -1;
-    private int loggedInUserId = -1;
     private AppRepository repository;
+    private User user;
+    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    private static final int LOGGED_OUT = -1;
+    private int loggedInUserId = LOGGED_OUT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +38,11 @@ public class HubActivity extends AppCompatActivity {
         binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
                                                          @Override
                                                          public void onClick(View view) {
-                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), user.getId()));
+                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
                                                          }
                                                      });
         binding.editPartyButton.setOnClickListener(view -> {
-            startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), user.getId()));
+            startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext()));
         });
 
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +82,7 @@ public class HubActivity extends AppCompatActivity {
         });
     }
 
-    static Intent hubActivityIntentFactory(Context context, int userId){
+    static Intent hubActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, HubActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
