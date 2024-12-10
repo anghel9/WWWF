@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.factories.AnimalFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,29 @@ public class BeachBattleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+
+        int userId = getIntent().getIntExtra("USER_ID", -1);
+        if (userId == -1) {
+            Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        AppRepository repository = AppRepository.getRepository(getApplication());
+        repository.getUserById(userId).observe(this, user -> {
+            if (user != null) {
+                // Use the User object
+                String username = user.getUsername();
+                int highestArenaScore = user.getHighestArena();
+                Toast.makeText(this, "Welcome, " + username, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Error fetching user details. Redirecting to login.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         playerCreatureView = findViewById(R.id.playerCreatureView);
         opponentCreatureView = findViewById(R.id.opponentCreatureView);
@@ -128,7 +152,8 @@ public class BeachBattleActivity extends AppCompatActivity {
         }
 
         handler.postDelayed(() -> {
-            Intent intent = WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId);
+            int userId = getIntent().getIntExtra("USER_ID", -1);
+            Intent intent = WorldActivity.worldActivityIntentFactory(this, userId);
             startActivity(intent);
             finish();
             Toast.makeText(this, player.isAlive() ? "Congratulations on winning the battle!" : "You lost the battle.", Toast.LENGTH_LONG).show();

@@ -11,13 +11,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.groupproject.Animal;
 import com.example.groupproject.R;
+import com.example.groupproject.database.factories.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>{
 
-    private final List<Animal> animals;
+    private List<Animal> animals = AnimalFactory.getCreatures();
     private final OnAnimalClickListener onClickListener;
 
     public interface OnAnimalClickListener {

@@ -50,5 +50,4 @@ public interface UserDAO {
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();
 
-
 }

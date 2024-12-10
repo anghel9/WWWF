@@ -20,15 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gemini_generated_image_p757d0p757d0p757" />
 
-    <View
-        android:id="@+id/partyView2"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:layout_margin="15dp"
-        android:layout_marginEnd="311dp"
-        app:layout_constraintBottom_toTopOf="@id/editPartyButton"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <Button
         android:id="@+id/editPartyButton"
         android:layout_width="wrap_content"
@@ -97,5 +88,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signOutButton"
         />
+
+    <TextView
+        android:id="@+id/userView"
+        android:layout_width="wrap_content"
+        android:layout_height="93dp"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textAppearance="@color/black"
+        android:text="@string/usernamehub"
+        android:textSize="60dp"
+        app:layout_constraintStart_toEndOf="@id/worldSelectButton"
+        app:layout_constraintTop_toBottomOf="@id/worldSelectButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

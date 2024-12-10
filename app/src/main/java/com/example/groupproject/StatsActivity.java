@@ -23,8 +23,9 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
     private TextView animalName;
     private TextView animalStats;
 
-    public static Intent statsActivityIntentFactory(Context context) {
+    static Intent statsActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, StatsActivity.class);
+        intent.putExtra("USER_ID", userId);
         return intent;
     }
 

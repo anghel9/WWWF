@@ -62,7 +62,7 @@ public class WorldActivity extends AppCompatActivity {
 
     static Intent worldActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, WorldActivity.class);
-        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+        intent.putExtra("User_Name", userId);
         return intent;
     }
 }
