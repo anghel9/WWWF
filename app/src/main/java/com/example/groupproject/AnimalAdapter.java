@@ -57,5 +57,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             animalNameTextView = itemView.findViewById(R.id.animalName);
             animalImageView = itemView.findViewById(R.id.animalImage);
         }
+
+        public void bind(Animal animal, OnAnimalClickListener listener) {
+            animalNameTextView.setText(animal.getAnimalName());
+            animalImageView.setImageResource(animal.getImageResId());
+            itemView.setOnClickListener(v -> listener.onAnimalClick(animal));
+        }
     }
 }

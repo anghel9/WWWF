@@ -21,6 +21,7 @@ import java.util.List;
 
 public class AnimalListFragment extends DialogFragment {
 
+
     public interface OnAnimalSelectedListener{
         void onAnimalSelected(String name, int imageResId, String stats);
     }
