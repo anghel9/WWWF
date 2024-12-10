@@ -45,7 +45,7 @@ public class HubActivity extends AppCompatActivity {
         binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
                                                          @Override
                                                          public void onClick(View view) {
-                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext()));
+                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), user.getId()));
                                                          }
                                                      });
         binding.editPartyButton.setOnClickListener(view -> {

@@ -48,7 +48,7 @@ public class BattleActivity extends AppCompatActivity {
     static Intent battleActivityIntentFactory(Context context, int userId, Animal bossAnimal) {
         Intent intent = new Intent(context, BattleActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
-        intent.putExtra(BATTLE_ACTIVITY_BOSS_ANIMAL, (CharSequence) bossAnimal);
+        intent.putExtra(BATTLE_ACTIVITY_BOSS_ANIMAL, bossAnimal);
         return intent;
     }
 
@@ -57,8 +57,12 @@ public class BattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
+        playerCreatureView = findViewById(R.id.playerCreatureView);
+        opponentCreatureView = findViewById(R.id.opponentCreatureView);
+
         userDAO = AppDatabase.getInstance(this).userDAO();
         int userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
+
         if (userId <= -1) {
             Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
             finish();
@@ -112,7 +116,7 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         int roll = random.nextInt(100) + 1;
-        String result = player.attack(opponent, roll);
+        String result = player.attack(opponent);
         adapter.addLog(result);
 
         updateUI();
@@ -132,7 +136,7 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         int roll = random.nextInt(100) + 1;
-        String result = opponent.attack(player, roll);
+        String result = opponent.attack(player);
         adapter.addLog(result);
 
         updateUI();
@@ -146,6 +150,7 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     private void endBattle() {
+        int userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
         adapter.addLog("Battle Over!");
         if (player.isAlive()) {
             currentUser.setHighestArena(currentUser.getHighestArena() + 1);
@@ -153,7 +158,7 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         handler.postDelayed(() -> {
-            Intent intent = WorldActivity.worldActivityIntentFactory(this);
+            Intent intent = WorldActivity.worldActivityIntentFactory(this, userId);
             startActivity(intent);
             finish();
             Toast.makeText(this, player.isAlive() ? "Congratulations on winning the battle!" : "You lost the battle.", Toast.LENGTH_LONG).show();

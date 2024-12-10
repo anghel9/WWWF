@@ -1,6 +1,9 @@
 package com.example.groupproject;
 
-public class Animal {
+import java.io.Serializable;
+import java.util.Random;
+
+public class Animal implements Serializable {
     private String animalName = "";
     private int hp = 100;
     private int maxHp = 100;
@@ -35,8 +38,9 @@ public class Animal {
     }
 
     // Attack Method
-    public String attack(Animal target, int roll) {
-        if (roll <= this.getAccuracy() * 100) {
+    public String attack(Animal target) {
+        Random random = new Random();
+        if (random.nextInt(100) <= this.getAccuracy()) {
             target.setHp(target.getHp() - this.getAttackPwr());
             return this.getAnimalName() + " hit " + target.getAnimalName() + " for " + this.getAttackPwr() + " damage!";
         }
@@ -91,4 +95,5 @@ public class Animal {
     public String getStats() {
         return ("HP: " + hp + "/" + maxHp + " Attack Power: " + attackPwr + " Accuracy: " + (accuracy * 100) + "%");
     }
+
 }

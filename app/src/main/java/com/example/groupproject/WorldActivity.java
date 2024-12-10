@@ -21,8 +21,11 @@ public class WorldActivity extends AppCompatActivity {
 
     private Button bossButton;
 
-    static Intent worldActivityIntentFactory(Context context) {
-        return new Intent(context, WorldActivity.class);
+    static Intent worldActivityIntentFactory(Context context, int userId) {
+        Intent Intent = new Intent(context, WorldActivity.class);
+        Intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+        return Intent;
+
     }
 
     @Override

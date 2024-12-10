@@ -1,7 +1,7 @@
 package com.example.groupproject;
 
-import static com.example.groupproject.database.factories.AnimalFactory.getAnimalById;
-
+import com.example.groupproject.database.AppDatabase;
+import com.example.groupproject.database.UserDAO;
 import com.example.groupproject.database.entities.User;
 import com.example.groupproject.database.factories.AnimalFactory;
 
@@ -11,20 +11,22 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class StatsActivity extends AppCompatActivity implements AnimalListFragment.OnAnimalSelectedListener {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
+    private static final String BATTLE_ACTIVITY_BOSS_ANIMAL = "com.example.groupproject.BATTLE_ACTIVITY_BOSS_ANIMAL";
 
     private ImageView animalImage;
     private TextView animalName;
     private TextView animalStats;
+
+    private UserDAO userDAO;
+    private User currentUser;
+    private int userId;
 
     public static Intent statsActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, StatsActivity.class);
@@ -42,6 +44,7 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         animalStats = findViewById(R.id.animalStats);
 
         //loginUser();
+        userDAO = AppDatabase.getInstance(this).userDAO();
 
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
@@ -56,8 +59,23 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
             finish();
         });
 
-        Animal playerAnimal = AnimalFactory.getAnimalById(User.getCurrentCreatureId());
-        updateAnimal(playerAnimal.getAnimalName(), playerAnimal.getImageResId(), playerAnimal.getStats());
+        // Fetch the user ID from the intentcurrentUser = userDAO.getUserById(userId);
+        userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
+        if (userId <= -1) {
+            Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+
+        }
+        currentUser = userDAO.getUserById(userId).getValue();
+        if (currentUser == null) {
+            Toast.makeText(this, "Invalid user!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+        // Set the initial animal
+        // updateAnimal(currentUser.getAnimalName(), currentUser.getCurrentCreatureImage(), currentUser.getCurrentCreatureStats());
+
     }
 
     @Override
