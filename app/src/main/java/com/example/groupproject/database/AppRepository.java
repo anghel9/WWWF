@@ -18,16 +18,16 @@ public class AppRepository {
     private static volatile AppRepository repository;
     private final UserDAO userDAO;
     private final AnimalDAO animalDAO;
-    private final GameProgressDAO gameProgressDAO; // Add reference to GameProgressDAO
-    private final InventoryDAO inventoryDAO;       // Add reference to InventoryDAO
+    private final GameProgressDAO gameProgressDAO;
+    private final InventoryDAO inventoryDAO;
     private final ExecutorService executorService;
 
     private AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         userDAO = db.userDAO();
         animalDAO = db.animalDAO();
-        gameProgressDAO = db.gameProgressDAO(); // Initialize GameProgressDAO
-        inventoryDAO = db.inventoryDAO();       // Initialize InventoryDAO
+        gameProgressDAO = db.gameProgressDAO();
+        inventoryDAO = db.inventoryDAO();
         executorService = Executors.newFixedThreadPool(4);
     }
 
@@ -66,6 +66,14 @@ public class AppRepository {
 
     public void deleteAllUsers() {
         executorService.execute(userDAO::deleteAll);
+    }
+
+    public int isUsernameTaken(String username) {
+        return userDAO.isUsernameTaken(username);
+    }
+
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userDAO.authenticateUser(username, password);
     }
 
     // GameProgressDAO Methods
