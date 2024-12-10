@@ -5,19 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BattleActivity">
+    tools:context=".BossBattleActivity">
 
-
-    <ProgressBar
-        android:id="@+id/opponentHealthBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="241dp"
-        android:layout_height="44dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/opponentCreatureName" />
 
     <ImageView
-        android:id="@+id/atlantaActivityBackground"
+        android:id="@+id/bossActivityBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/image_of_nature_displaying_a_forest_to_the_left_of_a_river_and_a_desert_to_the_right"
@@ -26,7 +18,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/atlantaarena"/>
+        app:srcCompat="@drawable/bossarena"/>
+
+    <ProgressBar
+        android:id="@+id/opponentHealthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="241dp"
+        android:layout_height="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/opponentCreatureName" />
 
     <ImageView
         android:id="@+id/opponentCreatureView"

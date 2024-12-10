@@ -8,6 +8,18 @@
     tools:context=".BattleActivity">
 
 
+    <ImageView
+        android:id="@+id/battleActivityBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/image_of_nature_displaying_a_forest_to_the_left_of_a_river_and_a_desert_to_the_right"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bossarena1"/>
+
     <ProgressBar
         android:id="@+id/opponentHealthBar"
         style="?android:attr/progressBarStyleHorizontal"
