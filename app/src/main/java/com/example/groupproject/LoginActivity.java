@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 if (user != null) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext());
+                    startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext()));
                 } else {
                     Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
