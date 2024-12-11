@@ -173,7 +173,9 @@ public class BeachBattleActivity extends AppCompatActivity {
         opponentHealthBar.setProgress(opponent.getHp());
         opponentCreatureView.setImageResource(opponent.getImageResId());
 
-        combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
+        if (!combatLogs.isEmpty()) {
+            combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
+        }
     }
 
     static Intent beachBattleIntentFactory(Context context) {

@@ -43,7 +43,10 @@ public class WorldActivity extends AppCompatActivity {
 
         beachBattleButton = findViewById(R.id.BeachBattleButton);
         beachBattleButton.setOnClickListener(v -> {
+            int userId = getIntent().getIntExtra("User_Name", -1); // Assuming "User_Name" is the key
+
             Intent battleIntent = BeachBattleActivity.beachBattleIntentFactory(getApplicationContext());
+            battleIntent.putExtra("USER_ID", userId); // Add the userId to the intent
             startActivity(battleIntent);
         });
 

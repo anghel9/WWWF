@@ -54,12 +54,12 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
-                                                         @Override
-                                                         public void onClick(View view) {
-                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId));
-                                                         }
-                                                     });
+        // ... inside HubActivity ...
+
+        binding.worldSelectButton.setOnClickListener(view -> {
+
+            startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId));
+        });
         binding.editPartyButton.setOnClickListener(view -> {
             startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), userId));
         });
@@ -71,10 +71,6 @@ public class HubActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
     private void loginUser() {
         if(loggedInUserId == LOGGED_OUT){
