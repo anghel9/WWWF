@@ -42,7 +42,7 @@ public class AnimalFactory {
     }
 
     public static Animal createBossAnimal() {
-        return new Animal("Boss", 300, 300, 80, 15, R.drawable.boss, getCreatures().size() + 1);
+        return new Animal("Boss", 500, 500, 75, 75, R.drawable.boss, getCreatures().size() + 1);
     }
 
 }
