@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeleteUserActivity">
+
+    <TextView
+        android:id="@+id/delteUserTextView"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="@string/delete_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/userNameDeleteEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dip"
+        android:layout_margin="16dp"
+        android:autofillHints="Please enter username"
+        android:gravity="center"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delteUserTextView" />
+
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@+id/deleteButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/backButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/back"
+        />
+
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@+id/userNameDeleteEditText"
+        android:id="@+id/deleteButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/delete"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
