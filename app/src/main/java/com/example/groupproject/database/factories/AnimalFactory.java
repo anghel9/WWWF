@@ -13,7 +13,6 @@ public class AnimalFactory {
     // Method to create hard-coded creatures
     public static List<Animal> getCreatures() {
         List<Animal> creatures = new ArrayList<>();
-
         creatures.add(new Animal("Deer", 200, 200, 40, 80, R.drawable.deer, 1));
         creatures.add(new Animal("Cabbage", 300, 300, 80, 10, R.drawable.wizard, 2));
         creatures.add(new Animal("Bass", 250, 250, 35, 65, R.drawable.bass, 3));
@@ -25,7 +24,6 @@ public class AnimalFactory {
         creatures.add(new Animal("Otter", 120, 120, 35, 90, R.drawable.ottery, 9));
         return creatures;
     }
-
 
     public static Animal getAnimalById(int id) {
         if(id >= getCreatures().size()){
