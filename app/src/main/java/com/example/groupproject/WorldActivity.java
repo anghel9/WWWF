@@ -38,7 +38,7 @@ public class WorldActivity extends AppCompatActivity {
         forestBattleButton = findViewById(R.id.ForestBattleButton);
         forestBattleButton.setOnClickListener(v -> {
             int userId = getIntent().getIntExtra("User_Name", -1);
-            Intent battleIntent = ForestBattleActivity.forestBattleIntentFactory(getApplicationContext());
+            Intent battleIntent = ForestBattleActivity.forestBattleIntentFactory(getApplicationContext(), userId);
             battleIntent.putExtra("USER_ID", userId);
             startActivity(battleIntent);
         });
@@ -55,7 +55,7 @@ public class WorldActivity extends AppCompatActivity {
         atlantaBattleButton = findViewById(R.id.AtlantaBattleButton);
         atlantaBattleButton.setOnClickListener(v -> {
             int userId = getIntent().getIntExtra("User_Name", -1);
-            Intent battleIntent = AtlantaBattleActivity.atlantaBattleIntentFactory(getApplicationContext());
+            Intent battleIntent = AtlantaBattleActivity.atlantaBattleIntentFactory(getApplicationContext(), userId);
             battleIntent.putExtra("USER_ID", userId);
             startActivity(battleIntent);
         });
@@ -63,7 +63,7 @@ public class WorldActivity extends AppCompatActivity {
         bossButton = findViewById(R.id.BossButton);
         bossButton.setOnClickListener(v -> {
             int userId = getIntent().getIntExtra("User_Name", -1);
-            Intent battleIntent = BossBattleActivity.bossBattleIntentFactory(getApplicationContext());
+            Intent battleIntent = BossBattleActivity.bossBattleIntentFactory(getApplicationContext(), userId);
             battleIntent.putExtra("USER_ID", userId);
             startActivity(battleIntent);
         });

@@ -4,18 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.groupproject.database.AppRepository;
+import com.example.groupproject.database.entities.User;
+import com.example.groupproject.database.factories.AnimalFactory;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.groupproject.database.AppRepository;
-import com.example.groupproject.database.factories.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +31,13 @@ public class BossBattleActivity extends AppCompatActivity {
     private RecyclerView combatLogRecyclerView;
     private CombatLogAdapter adapter;
     private List<String> combatLogs;
-    private Button attackButton;
+    private Button attackButton, exitBattleButton;
     private ImageView opponentCreatureView, playerCreatureView;
     private Handler handler;
     private Random random;
 
     // Game Elements
-    private Animal player;
+    private Animal player = AnimalFactory.getRandomCreature();
     private Animal opponent = AnimalFactory.createBossAnimal();
 
     @Override
@@ -65,8 +68,18 @@ public class BossBattleActivity extends AppCompatActivity {
             }
         });
 
+        repository = AppRepository.getRepository(getApplication());
+        LiveData<User> userObserver = repository.getUserById(userId);
+        userObserver.observe(this, user -> {
+            int creatureId = user.getCurrentCreatureId();
+            player = AnimalFactory.getAnimalById(creatureId);
+            updateUI();
+        });
+
+
         playerCreatureView = findViewById(R.id.playerCreatureView);
         opponentCreatureView = findViewById(R.id.opponentCreatureView);
+
 
         if (player.getHp() <= 0 || opponent.getHp() <= 0) {
             Toast.makeText(this, "Invalid battle state. Restarting battle!", Toast.LENGTH_SHORT).show();
@@ -82,6 +95,7 @@ public class BossBattleActivity extends AppCompatActivity {
         playerHealthBar = findViewById(R.id.playerHealthBar);
         combatLogRecyclerView = findViewById(R.id.combatLog);
         attackButton = findViewById(R.id.attackButton);
+        exitBattleButton = findViewById(R.id.exitBattleButton);
 
         combatLogs = new ArrayList<>();
         adapter = new CombatLogAdapter(combatLogs);
@@ -93,6 +107,14 @@ public class BossBattleActivity extends AppCompatActivity {
 
         updateUI();
 
+        exitBattleButton.setOnClickListener(v -> {
+            exitBattleButton.setVisibility(View.GONE);
+            attackButton.setVisibility(View.GONE);
+            exitBattleButton.setEnabled(false);
+            endBattle();
+        });
+
+        attackButton.setEnabled(true);
         attackButton.setOnClickListener(v -> {
             playerTurn();
             attackButton.setEnabled(false);
@@ -105,7 +127,7 @@ public class BossBattleActivity extends AppCompatActivity {
             return;
         }
 
-        int roll = random.nextInt(100) + 1;
+        int roll = random.nextInt(100);
         String result = player.attack(opponent);
         adapter.addLog(result);
 
@@ -120,6 +142,7 @@ public class BossBattleActivity extends AppCompatActivity {
     }
 
     private void enemyTurn() {
+        attackButton.setEnabled(false);
         if (!player.isAlive() || !opponent.isAlive()) {
             endBattle();
             return;
@@ -169,10 +192,15 @@ public class BossBattleActivity extends AppCompatActivity {
         opponentHealthBar.setProgress(opponent.getHp());
         opponentCreatureView.setImageResource(opponent.getImageResId());
 
-        combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
+        if (!combatLogs.isEmpty()) {
+            combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
+        }
     }
 
-    static Intent bossBattleIntentFactory(Context context) {
-        return new Intent(context, BossBattleActivity.class);
+    static Intent bossBattleIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, BossBattleActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
+
 }
