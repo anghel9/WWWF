@@ -43,7 +43,7 @@ public class BeachBattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        setContentView(R.layout.activity_battle_beach);
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
         if (userId == -1) {
@@ -108,6 +108,9 @@ public class BeachBattleActivity extends AppCompatActivity {
         updateUI();
 
         exitBattleButton.setOnClickListener(v -> {
+            exitBattleButton.setVisibility(View.GONE);
+            attackButton.setVisibility(View.GONE);
+            exitBattleButton.setEnabled(false);
             endBattle();
         });
 

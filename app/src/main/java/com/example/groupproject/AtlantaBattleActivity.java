@@ -39,7 +39,7 @@ public class AtlantaBattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        setContentView(R.layout.activity_battle_atlanta);
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
         if (userId == -1) {

@@ -97,6 +97,10 @@ public class AppRepository {
         userDAO.updateAssignedCreature(creatureId, userId);
     }
 
+    public void updateUser(User user) {
+        AppDatabase.databaseWriteExecutor.execute(() -> userDAO.update(user));
+    }
+
     public Animal getAssignedCreature(int userId) {
         User user = userDAO.getUserById(userId).getValue();
         if (user != null) {
