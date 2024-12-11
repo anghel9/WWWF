@@ -50,4 +50,7 @@ public interface UserDAO {
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();
 
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE id = :id")
+    User getUserByIdNonLive(int id);
+
 }

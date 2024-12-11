@@ -8,6 +8,7 @@ import com.example.groupproject.database.factories.AnimalFactory;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,16 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         animalName = findViewById(R.id.animalName);
         animalStats = findViewById(R.id.animalStats);
 
+
+        int userId = getIntent().getIntExtra("USER_ID", -1);
+        if (userId == -1) {
+            Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        Log.d("StatsActivity", "Received USER_ID: " + userId);
+
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
             AnimalListFragment fragment = new AnimalListFragment();
@@ -46,7 +57,7 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
 
         Button exitButton = findViewById(R.id.statsExitButton);
         exitButton.setOnClickListener(view -> {
-            Intent intent = new Intent(StatsActivity.this, HubActivity.class);
+            Intent intent = new Intent(getApplicationContext(), HubActivity.class);
             startActivity(intent);
             finish();
         });

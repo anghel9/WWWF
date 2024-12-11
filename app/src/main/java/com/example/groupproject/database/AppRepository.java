@@ -51,6 +51,11 @@ public class AppRepository {
         return userDAO.getUserById(id);
     }
 
+    public User getUserByIdNonLive(int id) {
+        return userDAO.getUserByIdNonLive(id);
+
+    }
+
     public LiveData<List<User>> getAllUsers() {
         return userDAO.getAllUsers();
     }

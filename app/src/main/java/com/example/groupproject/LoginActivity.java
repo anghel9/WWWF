@@ -15,7 +15,6 @@ import com.example.groupproject.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
     private ActivityLoginBinding binding;
     private AppRepository repository;
 

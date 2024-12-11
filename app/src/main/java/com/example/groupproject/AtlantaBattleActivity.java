@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -42,6 +43,8 @@ public class AtlantaBattleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle);
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
+        Log.d("AtlantaBattleActivity", "Received USER_ID: " + userId);
+
         if (userId == -1) {
             Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);

@@ -3,6 +3,7 @@ package com.example.groupproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class HubActivity extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
+        Log.d("HubActivity", "Received USER_ID: " + userId);
+
         if (userId == -1) {
             Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -53,12 +56,10 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        binding.worldSelectButton.setOnClickListener(new View.OnClickListener() {
-                                                         @Override
-                                                         public void onClick(View view) {
-                                                             startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId));
-                                                         }
-                                                     });
+        binding.worldSelectButton.setOnClickListener(view -> {
+            startActivity(WorldActivity.worldActivityIntentFactory(getApplicationContext(), userId));
+        });
+
         binding.editPartyButton.setOnClickListener(view -> {
             startActivity(StatsActivity.statsActivityIntentFactory(getApplicationContext(), userId));
         });
