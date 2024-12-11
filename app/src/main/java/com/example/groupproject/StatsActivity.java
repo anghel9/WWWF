@@ -58,8 +58,8 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
 
         Button exitButton = findViewById(R.id.statsExitButton);
         exitButton.setOnClickListener(view -> {
-            Intent intent = new Intent(StatsActivity.this, HubActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(StatsActivity.this, HubActivity.class);
+            startActivity(HubActivity.hubActivityIntentFactory(getApplicationContext(), loggedInUserId));
             finish();
         });
 
