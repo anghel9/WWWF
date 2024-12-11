@@ -3,6 +3,7 @@ package com.example.groupproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,15 +21,17 @@ public class HubActivity extends AppCompatActivity {
     private static final int LOGGED_OUT = -1;
     private int loggedInUserId = LOGGED_OUT;
     private User user = null;
+    private ActivityHubBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityHubBinding binding = ActivityHubBinding.inflate(getLayoutInflater());
+        binding = ActivityHubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = AppRepository.getRepository(getApplication());
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
+        Log.i("TAG", String.valueOf(userId));
         if (userId == -1) {
             Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -70,6 +73,12 @@ public class HubActivity extends AppCompatActivity {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), LOGGED_OUT));
             }
         });
+        binding.editUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(DeleteUserActivity.deleteUserActivityIntentFactory(getApplicationContext(), userId));
+            }
+        });
     }
 
     private void loginUser() {
@@ -85,6 +94,9 @@ public class HubActivity extends AppCompatActivity {
             this.user = user;
             if(this.user != null){
                 invalidateOptionsMenu();
+            }
+            if(!user.isAdmin()){
+                binding.editUsersButton.setVisibility(View.GONE);
             }
         });
     }

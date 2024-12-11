@@ -30,4 +30,7 @@
     <string name="select_an_animal">Select an Animal</string>
     <string name="exit_battle">Exit Battle</string>
     <string name="usernamehub">username</string>
+    <string name="delete_user">Enter Username of User to delete:</string>
+    <string name="back">Back</string>
+    <string name="delete">Delete</string>
 </resources>

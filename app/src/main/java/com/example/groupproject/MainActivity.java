@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.groupproject.R;
+import com.example.groupproject.database.AppDatabase;
 import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.entities.User;
 import com.example.groupproject.databinding.ActivityMainBinding;
@@ -33,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = AppRepository.getRepository(getApplication());
-        User user1 = new User("Jerry", "PASSWORD");
-        User user3 = new User("admin2", "admin2");
-        user3.setAdmin(true);
-        repository.insertUser(user3);
-        repository.insertUser(user1);
+        repository.getUserById(3);
+//        User user1 = new User("Jerry", "PASSWORD");
+//        User user3 = new User("admin2", "admin2");
+//        user3.setAdmin(true);
+//        repository.insertUser(user3);
+//        repository.insertUser(user1);
 
         binding.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
