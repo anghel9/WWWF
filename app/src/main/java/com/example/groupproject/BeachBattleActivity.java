@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.groupproject.database.AppRepository;
+import com.example.groupproject.database.entities.User;
 import com.example.groupproject.database.factories.AnimalFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +31,7 @@ public class BeachBattleActivity extends AppCompatActivity {
     private RecyclerView combatLogRecyclerView;
     private CombatLogAdapter adapter;
     private List<String> combatLogs;
-    private Button attackButton;
+    private Button attackButton, exitBattleButton;
     private ImageView opponentCreatureView, playerCreatureView;
     private Handler handler;
     private Random random;
@@ -65,8 +68,18 @@ public class BeachBattleActivity extends AppCompatActivity {
             }
         });
 
+        repository = AppRepository.getRepository(getApplication());
+        LiveData<User> userObserver = repository.getUserById(userId);
+        userObserver.observe(this, user -> {
+            int creatureId = user.getCurrentCreatureId();
+            player = AnimalFactory.getAnimalById(creatureId);
+            updateUI();
+                });
+
+
         playerCreatureView = findViewById(R.id.playerCreatureView);
         opponentCreatureView = findViewById(R.id.opponentCreatureView);
+
 
         if (player.getHp() <= 0 || opponent.getHp() <= 0) {
             Toast.makeText(this, "Invalid battle state. Restarting battle!", Toast.LENGTH_SHORT).show();
@@ -82,6 +95,7 @@ public class BeachBattleActivity extends AppCompatActivity {
         playerHealthBar = findViewById(R.id.playerHealthBar);
         combatLogRecyclerView = findViewById(R.id.combatLog);
         attackButton = findViewById(R.id.attackButton);
+        exitBattleButton = findViewById(R.id.exitBattleButton);
 
         combatLogs = new ArrayList<>();
         adapter = new CombatLogAdapter(combatLogs);
@@ -93,7 +107,9 @@ public class BeachBattleActivity extends AppCompatActivity {
 
         updateUI();
 
-        handler.postDelayed(this::playerTurn, 2000);
+        exitBattleButton.setOnClickListener(v -> {
+            endBattle();
+        });
 
         attackButton.setEnabled(true);
         attackButton.setOnClickListener(v -> {
@@ -123,6 +139,7 @@ public class BeachBattleActivity extends AppCompatActivity {
     }
 
     private void enemyTurn() {
+        attackButton.setEnabled(false);
         if (!player.isAlive() || !opponent.isAlive()) {
             endBattle();
             return;
@@ -139,7 +156,6 @@ public class BeachBattleActivity extends AppCompatActivity {
             endBattle();
         } else {
             attackButton.setEnabled(true);
-            handler.postDelayed(this::playerTurn, 1000);
         }
     }
 
@@ -178,8 +194,10 @@ public class BeachBattleActivity extends AppCompatActivity {
         }
     }
 
-    static Intent beachBattleIntentFactory(Context context) {
-        return new Intent(context, BeachBattleActivity.class);
+    static Intent beachBattleIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, BeachBattleActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 
 }
