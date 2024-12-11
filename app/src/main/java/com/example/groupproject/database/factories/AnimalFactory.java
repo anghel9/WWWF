@@ -28,33 +28,10 @@ public class AnimalFactory {
 
 
     public static Animal getAnimalById(int id) {
-        switch (id) {
-            case 1:
-                return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
-            case 2:
-                return new Animal("Cabbage", 300, 300, 80, 25, R.drawable.wizard, 2);
-            case 3:
-                return new Animal("Bass", 120, 120, 35, 50, R.drawable.bass, 3);
-            case 4:
-                return new Animal("Salmon", 120, 120, 35, 50, R.drawable.salmon, 4);
-            case 5:
-                return new Animal("PitBull", 120, 120, 35, 50, R.drawable.pitbull, 5);
-
-                case 6:
-                return new Animal("Panda", 120, 120, 35, 50, R.drawable.panda, 6);
-
-                case 7:
-                return new Animal("Geico", 120, 120, 35, 50, R.drawable.geico, 7);
-
-                case 8:
-                return new Animal("Dragon", 120, 120, 35, 50, R.drawable.dragon, 8);
-
-                case 9:
-                return new Animal("Otter", 120, 120, 35, 50, R.drawable.ottery, 9);
-
-            default:
-                return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
-            }
+        if(id >= getCreatures().size()){
+            return getCreatures().get(1);
+        }
+        return getCreatures().get(id);
     }
 
     // Method to randomly select a creature
