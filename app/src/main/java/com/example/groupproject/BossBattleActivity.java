@@ -171,7 +171,9 @@ public class BossBattleActivity extends AppCompatActivity {
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
     }
 
-    static Intent bossBattleIntentFactory(Context context) {
-        return new Intent(context, BossBattleActivity.class);
+    static Intent bossBattleIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, BossBattleActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 }

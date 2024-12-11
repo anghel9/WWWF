@@ -18,8 +18,7 @@ public class HubActivity extends AppCompatActivity {
     private AppRepository repository;
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.groupproject.MAIN_ACTIVITY_USER_ID";
     private static final int LOGGED_OUT = -1;
-    private int loggedInUserId = LOGGED_OUT;
-    private User user = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,27 +67,6 @@ public class HubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), LOGGED_OUT));
-            }
-        });
-    }
-
-
-
-
-
-    private void loginUser() {
-        if(loggedInUserId == LOGGED_OUT){
-            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
-        }
-        if(loggedInUserId == LOGGED_OUT){
-            return;
-        }
-
-        LiveData<User> userObserver = repository.getUserById(loggedInUserId);
-        userObserver.observe(this, user -> {
-            this.user = user;
-            if(this.user != null){
-                invalidateOptionsMenu();
             }
         });
     }

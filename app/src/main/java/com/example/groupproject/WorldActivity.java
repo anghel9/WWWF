@@ -4,7 +4,9 @@ package com.example.groupproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.groupproject.AtlantaBattleActivity;
 import com.example.groupproject.BeachBattleActivity;
@@ -35,28 +37,43 @@ public class WorldActivity extends AppCompatActivity {
             finish();
         });
 
+
+
+
+
+
+        repository = AppRepository.getRepository(getApplication());
+
+        int userId = getIntent().getIntExtra("USER_ID", -1);
+        if (userId == -1) {
+            Toast.makeText(this, "No user logged in. Redirecting to login.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         forestBattleButton = findViewById(R.id.ForestBattleButton);
         forestBattleButton.setOnClickListener(v -> {
-            Intent battleIntent = ForestBattleActivity.forestBattleIntentFactory(getApplicationContext());
-            startActivity(battleIntent);
+            Intent forestBattleIntent = ForestBattleActivity.forestBattleIntentFactory(getApplicationContext(), userId);
+            startActivity(forestBattleIntent);
         });
 
         beachBattleButton = findViewById(R.id.BeachBattleButton);
         beachBattleButton.setOnClickListener(v -> {
-            Intent battleIntent = BeachBattleActivity.beachBattleIntentFactory(getApplicationContext());
-            startActivity(battleIntent);
+            Intent beachBattleIntent = BeachBattleActivity.beachBattleIntentFactory(getApplicationContext(), userId);
+            startActivity(beachBattleIntent);
         });
 
         atlantaBattleButton = findViewById(R.id.AtlantaBattleButton);
         atlantaBattleButton.setOnClickListener(v -> {
-            Intent battleIntent = AtlantaBattleActivity.atlantaBattleIntentFactory(getApplicationContext());
-            startActivity(battleIntent);
+            Intent atlantaBattleIntent = AtlantaBattleActivity.atlantaBattleIntentFactory(getApplicationContext(), userId);
+            startActivity(atlantaBattleIntent);
         });
 
         bossButton = findViewById(R.id.BossButton);
         bossButton.setOnClickListener(v -> {
-            Intent battleIntent = BossBattleActivity.bossBattleIntentFactory(getApplicationContext());
-            startActivity(battleIntent);
+            Intent bossBattleIntent = BossBattleActivity.bossBattleIntentFactory(getApplicationContext(), userId);
+            startActivity(bossBattleIntent);
         });
     }
 

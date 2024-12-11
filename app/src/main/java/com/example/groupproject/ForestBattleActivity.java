@@ -171,8 +171,10 @@ public class ForestBattleActivity extends AppCompatActivity {
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
     }
 
-    static Intent forestBattleIntentFactory(Context context) {
-        return new Intent(context, ForestBattleActivity.class);
+    static Intent forestBattleIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, ForestBattleActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 
 }

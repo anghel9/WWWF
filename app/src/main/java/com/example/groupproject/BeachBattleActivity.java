@@ -176,8 +176,10 @@ public class BeachBattleActivity extends AppCompatActivity {
         combatLogRecyclerView.smoothScrollToPosition(combatLogs.size() - 1);
     }
 
-    static Intent beachBattleIntentFactory(Context context) {
-        return new Intent(context, BeachBattleActivity.class);
+    static Intent beachBattleIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, BeachBattleActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 
 }
