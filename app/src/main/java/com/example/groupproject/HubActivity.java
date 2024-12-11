@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.groupproject.database.AppRepository;
 import com.example.groupproject.database.entities.User;
+import com.example.groupproject.database.factories.AnimalFactory;
 import com.example.groupproject.databinding.ActivityHubBinding;
 
 public class HubActivity extends AppCompatActivity {
@@ -22,6 +24,8 @@ public class HubActivity extends AppCompatActivity {
     private int loggedInUserId = LOGGED_OUT;
     private User user = null;
     private ActivityHubBinding binding;
+    private ImageView animalImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class HubActivity extends AppCompatActivity {
         binding = ActivityHubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = AppRepository.getRepository(getApplication());
+        animalImage = findViewById(R.id.worldView);
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
         Log.i("TAG", String.valueOf(userId));
@@ -49,6 +54,9 @@ public class HubActivity extends AppCompatActivity {
                 if (!user.isAdmin()) {
                     binding.editUsersButton.setVisibility(View.GONE);
                 }
+                int animalId = user.getCurrentCreatureId();
+                Animal currentAnimal = AnimalFactory.getAnimalById(animalId);
+                animalImage.setImageResource(currentAnimal.getImageResId());
             } else {
                 Toast.makeText(this, "Error loading user data. Redirecting to login.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, LoginActivity.class);
