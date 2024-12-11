@@ -26,6 +26,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+//testing intent factory for LoginActivity to HubActivity
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LoginActivityTest {
