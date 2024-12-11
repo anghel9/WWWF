@@ -49,10 +49,11 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
 
         loadAnimal();
 
+
         Button swapButton = findViewById(R.id.swapButton);
         swapButton.setOnClickListener(view -> {
-            AnimalListFragment fragment = new AnimalListFragment();
-            fragment.show(getSupportFragmentManager(), "AnimalListFragment");
+            //AnimalListFragment fragment = new AnimalListFragment();
+            //fragment.show(getSupportFragmentManager(), "AnimalListFragment");
             loadAnimal();
         });
 
