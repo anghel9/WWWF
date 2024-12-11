@@ -39,7 +39,7 @@ public class ForestBattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        setContentView(R.layout.activity_battle_forest);
 
         playerCreatureView = findViewById(R.id.playerCreatureView);
         opponentCreatureView = findViewById(R.id.opponentCreatureView);

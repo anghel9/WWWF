@@ -40,7 +40,7 @@ public class BossBattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        setContentView(R.layout.activity_battle_boss);
 
         int userId = getIntent().getIntExtra("USER_ID", -1);
         if (userId == -1) {
