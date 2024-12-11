@@ -91,7 +91,7 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         } else {
             LiveData<User> userObserver = repository.getUserById(loggedInUserId);
             userObserver.observe(this, user -> {
-                if(animalId >= 5){
+                if(animalId >= AnimalFactory.getCreatures().size()){
                     animalId = 0;
                 }
                 user.setCurrentCreatureId(animalId + 1);

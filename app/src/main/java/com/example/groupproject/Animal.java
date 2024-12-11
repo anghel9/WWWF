@@ -93,7 +93,7 @@ public class Animal implements Serializable {
     }
 
     public String getStats() {
-        return ("HP: " + hp + "/" + maxHp + " Attack Power: " + attackPwr + " Accuracy: " + (accuracy * 100) + "%");
+        return ("HP: " + hp + "/" + maxHp + " Attack Power: " + attackPwr + " Accuracy: " + (accuracy) + "%");
     }
 
 }
