@@ -15,7 +15,7 @@ public class AnimalFactory {
         List<Animal> creatures = new ArrayList<>();
 
         creatures.add(new Animal("Deer", 200, 200, 40, 80, R.drawable.deer, 1));
-        creatures.add(new Animal("The Wizard", 300, 300, 80, 10, R.drawable.wizard, 2));
+        creatures.add(new Animal("Cabbage", 300, 300, 80, 10, R.drawable.wizard, 2));
         creatures.add(new Animal("Bass", 250, 250, 35, 65, R.drawable.bass, 3));
         creatures.add(new Animal("Salmon",120, 120, 70, 80, R.drawable.salmon, 4));
         creatures.add(new Animal("PitBull", 200, 200, 55, 80, R.drawable.pitbull, 5));
