@@ -25,17 +25,17 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//testing intent factory for HubActivity to WorldActivity (Carson)
+//testing intent factory for StatsActivity to HubActivity (Jacob)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HubActivityIntentTest2 {
+public class StatsActivityIntentTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void hubActivityIntentTest2() {
+    public void statsActivityIntentTest() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.actionButton), withText("PLAY"),
                         childAtPosition(
@@ -56,7 +56,7 @@ public class HubActivityIntentTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("adm"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("admi"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.passwordLoginEditText),
@@ -67,10 +67,10 @@ public class HubActivityIntentTest2 {
                                                 0)),
                                 2),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("admin"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("dmin"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.userNameLoginEditText), withText("adm"),
+                allOf(withId(R.id.userNameLoginEditText), withText("admi"),
                         childAtPosition(
                                 allOf(withId(R.id.main),
                                         childAtPosition(
@@ -91,6 +91,28 @@ public class HubActivityIntentTest2 {
                         isDisplayed()));
         appCompatEditText4.perform(closeSoftKeyboard());
 
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.passwordLoginEditText), withText("dmin"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        appCompatEditText5.perform(replaceText("admin"));
+
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.passwordLoginEditText), withText("admin"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        appCompatEditText6.perform(closeSoftKeyboard());
+
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.loginButton), withText("login"),
                         childAtPosition(
@@ -103,15 +125,26 @@ public class HubActivityIntentTest2 {
         materialButton2.perform(click());
 
         ViewInteraction materialButton3 = onView(
-                allOf(withId(R.id.worldSelectButton), withText("Fight!"),
+                allOf(withId(R.id.editPartyButton), withText("Change Creature"),
                         childAtPosition(
                                 allOf(withId(R.id.main),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                2),
+                                1),
                         isDisplayed()));
         materialButton3.perform(click());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.statsExitButton), withText("Exit"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        materialButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

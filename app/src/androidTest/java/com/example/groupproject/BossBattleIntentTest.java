@@ -25,17 +25,17 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//testing intent factory for HubActivity to WorldActivity (Carson)
+//testing intent factory for BossBattleActivity to WorldActivity (Nathan)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HubActivityIntentTest2 {
+public class BossBattleIntentTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void hubActivityIntentTest2() {
+    public void bossBattleIntentTest() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.actionButton), withText("PLAY"),
                         childAtPosition(
@@ -56,7 +56,7 @@ public class HubActivityIntentTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("adm"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("admin"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.passwordLoginEditText),
@@ -68,28 +68,6 @@ public class HubActivityIntentTest2 {
                                 2),
                         isDisplayed()));
         appCompatEditText2.perform(replaceText("admin"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.userNameLoginEditText), withText("adm"),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("admin"));
-
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.userNameLoginEditText), withText("admin"),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText4.perform(closeSoftKeyboard());
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.loginButton), withText("login"),
@@ -112,6 +90,28 @@ public class HubActivityIntentTest2 {
                                 2),
                         isDisplayed()));
         materialButton3.perform(click());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.BossButton), withText("Dr.C Boss"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                5),
+                        isDisplayed()));
+        materialButton4.perform(click());
+
+        ViewInteraction materialButton5 = onView(
+                allOf(withId(R.id.exitBattleButton), withText("Exit Battle"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                9),
+                        isDisplayed()));
+        materialButton5.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

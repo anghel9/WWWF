@@ -25,17 +25,17 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//testing intent factory for HubActivity to WorldActivity (Carson)
+//testing intent factory for WorldActivity to AtlantaBattleActivity (Jacob)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HubActivityIntentTest2 {
+public class WorldActivityIntentTest3 {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void hubActivityIntentTest2() {
+    public void worldActivityIntentTest3() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.actionButton), withText("PLAY"),
                         childAtPosition(
@@ -112,6 +112,17 @@ public class HubActivityIntentTest2 {
                                 2),
                         isDisplayed()));
         materialButton3.perform(click());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.AtlantaBattleButton), withText("Atlanta Battle"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                4),
+                        isDisplayed()));
+        materialButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

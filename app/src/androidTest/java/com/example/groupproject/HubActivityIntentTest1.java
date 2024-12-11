@@ -25,7 +25,7 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//testing intent factory for HubActivity to DeleteUserActivity
+//testing intent factory for HubActivity to DeleteUserActivity (Carson)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class HubActivityIntentTest1 {

@@ -25,17 +25,17 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//testing intent factory for HubActivity to WorldActivity (Carson)
+//testing intent factory for ForrestBattleActivity to WorldActivity (Nathan)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HubActivityIntentTest2 {
+public class ForrestBattleIntentTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void hubActivityIntentTest2() {
+    public void forrestBattleIntentTest() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.actionButton), withText("PLAY"),
                         childAtPosition(
@@ -56,7 +56,7 @@ public class HubActivityIntentTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("adm"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("admi"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.passwordLoginEditText),
@@ -70,7 +70,7 @@ public class HubActivityIntentTest2 {
         appCompatEditText2.perform(replaceText("admin"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.userNameLoginEditText), withText("adm"),
+                allOf(withId(R.id.userNameLoginEditText), withText("admi"),
                         childAtPosition(
                                 allOf(withId(R.id.main),
                                         childAtPosition(
@@ -112,6 +112,28 @@ public class HubActivityIntentTest2 {
                                 2),
                         isDisplayed()));
         materialButton3.perform(click());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.ForestBattleButton), withText("Forest Battle"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        materialButton4.perform(click());
+
+        ViewInteraction materialButton5 = onView(
+                allOf(withId(R.id.exitBattleButton), withText("Exit Battle"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                9),
+                        isDisplayed()));
+        materialButton5.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

@@ -25,7 +25,7 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
+//testing intent factory for WorldActivity to HubActivity (Jacob)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class WorldActivityIntentTest1 {
