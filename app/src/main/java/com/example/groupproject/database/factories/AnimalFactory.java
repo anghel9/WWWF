@@ -32,7 +32,7 @@ public class AnimalFactory {
             case 1:
                 return new Animal("Deer", 120, 120, 35, 50, R.drawable.deer, 1);
             case 2:
-                return new Animal("The Wizard", 300, 300, 80, 25, R.drawable.wizard, 2);
+                return new Animal("Cabbage", 300, 300, 80, 25, R.drawable.wizard, 2);
             case 3:
                 return new Animal("Bass", 120, 120, 35, 50, R.drawable.bass, 3);
             case 4:
