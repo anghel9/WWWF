@@ -108,6 +108,9 @@ public class BeachBattleActivity extends AppCompatActivity {
         updateUI();
 
         exitBattleButton.setOnClickListener(v -> {
+            exitBattleButton.setVisibility(View.GONE);
+            attackButton.setVisibility(View.GONE);
+            exitBattleButton.setEnabled(false);
             endBattle();
         });
 

@@ -77,29 +77,37 @@ public class StatsActivity extends AppCompatActivity implements AnimalListFragme
         animalStats.setText("Stats: " + stats);
     }
 
-    private void loadAnimal(){
-        if(loggedInUserId == -1) {
+    private void loadAnimal() {
+        if (loggedInUserId == -1) {
             loggedInUserId = getIntent().getIntExtra("USER_ID", LOGGED_OUT);
         }
-        if(firstAnimal) {
-            firstAnimal = false;
-            LiveData<User> userObserver = repository.getUserById(loggedInUserId);
-            userObserver.observe(this, user -> {
-                animalId = user.getCurrentCreatureId();
-                currentAnimal = AnimalFactory.getAnimalById(animalId);
-                updateAnimal(currentAnimal.getAnimalName(), currentAnimal.getImageResId(), currentAnimal.getStats());
-            });
-        } else {
-            LiveData<User> userObserver = repository.getUserById(loggedInUserId);
-            userObserver.observe(this, user -> {
-                if(animalId >= AnimalFactory.getCreatures().size()){
-                    animalId = 0;
+
+        LiveData<User> userLiveData = repository.getUserById(loggedInUserId);
+        userLiveData.observe(this, user -> {
+            if (user != null) {
+                // Stop observing LiveData to avoid infinite loop
+                userLiveData.removeObservers(this);
+
+                if (firstAnimal) {
+                    firstAnimal = false;
+                    animalId = user.getCurrentCreatureId();
+                } else {
+                    // Increment the animalId and wrap around if necessary
+                    animalId = (animalId + 1) % AnimalFactory.getCreatures().size();
+                    user.setCurrentCreatureId(animalId);
+
+                    // Save the updated User object to the database
+                    repository.updateUser(user);
                 }
-                user.setCurrentCreatureId(animalId + 1);
-                animalId = user.getCurrentCreatureId();
+
+                // Update the UI with the new animal
                 currentAnimal = AnimalFactory.getAnimalById(animalId);
                 updateAnimal(currentAnimal.getAnimalName(), currentAnimal.getImageResId(), currentAnimal.getStats());
-            });
-        }
+            } else {
+                Toast.makeText(this, "Failed to load user. Redirecting to login.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            }
+        });
     }
 }

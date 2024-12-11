@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.groupproject.database.AppRepository;
+import com.example.groupproject.database.factories.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class BossBattleActivity extends AppCompatActivity {
 
     // Game Elements
     private Animal player;
-    private Animal opponent;
+    private Animal opponent = AnimalFactory.createBossAnimal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
