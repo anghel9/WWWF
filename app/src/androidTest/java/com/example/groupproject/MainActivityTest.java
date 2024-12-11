@@ -24,7 +24,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-//Testing intent factory for MainActivity to LoginActivity
+//testing intent factory for MainActivity to LoginActivity
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
